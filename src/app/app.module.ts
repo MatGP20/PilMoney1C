@@ -9,6 +9,8 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IngresarDineroComponent } from './comp/ingresar-dinero/ingresar-dinero.component';
 import { EgresarDineroComponent } from './comp/egresar-dinero/egresar-dinero.component';
+import { LoginComponent } from './comp/login/login.component';
+import { RegisterComponent } from './comp/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { EgresarDineroComponent } from './comp/egresar-dinero/egresar-dinero.com
     LandingComponent,
     HomeComponent,
     IngresarDineroComponent,
-    EgresarDineroComponent
+    EgresarDineroComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
