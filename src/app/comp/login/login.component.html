@@ -1,22 +1,37 @@
-<!-- <form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email</label>
+<form [formGroup]="form" (ngSubmit)="onEnviar($event)" novalidate>
+  <div class="form-group">
+    <label for="email">Email address:</label>
     <input
       type="email"
       class="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
+      formControlName="mail"
+      placeholder="Enter email"
+      id="email"
+      [class.border-danger]="mailInvalid"
     />
+    <div *ngIf="mailField.errors && mailField.dirty" class="text-danger">
+      <p *ngIf="mailField.hasError('required')">El mail es requerido.</p>
+      <p *ngIf="mailField.hasError('email')">
+        El formato del mail debe ser válido.
+      </p>
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" />
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      formControlName="password"
+      placeholder="Enter password"
+      id="pwd"
+      [class.border-danger]="passInvalid"
+    />
+    <div *ngIf="passField.errors && passField.dirty" class="text-danger">
+      <p *ngIf="passField.hasError('required')">El password es requerido.</p>
+      <p *ngIf="passField.hasError('minlength')">
+        El password debe tener 8 dígitos o más.
+      </p>
+    </div>
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-    <label class="form-check-label" for="exampleCheck1"
-      >Recuerda mi cuenta</label
-    >
-  </div>
-  <button type="submit" class="btn btn-primary">Aceptar</button>
-</form> -->
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
