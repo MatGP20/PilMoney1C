@@ -1,3 +1,14 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="staticBackdropLabel">Iniciar Sesión</h5>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
+</div>
+<div class="modal-body">
+
 <form [formGroup]="form" (ngSubmit)="onEnviar($event)" novalidate>
   <div class="form-group">
     <label for="email">Email address:</label>
@@ -7,14 +18,14 @@
       formControlName="mail"
       placeholder="Enter email"
       id="email"
-      [class.border-danger]="mailInvalid"
     />
-    <div *ngIf="mailField.errors && mailField.dirty" class="text-danger">
+    <!-- [class.border-danger]="mailInvalid" -->
+    <!-- <div *ngIf="mailField.errors && mailField.dirty" class="text-danger">
       <p *ngIf="mailField.hasError('required')">El mail es requerido.</p>
       <p *ngIf="mailField.hasError('email')">
         El formato del mail debe ser válido.
       </p>
-    </div>
+    </div> -->
   </div>
   <div class="form-group">
     <label for="pwd">Password:</label>
@@ -24,14 +35,17 @@
       formControlName="password"
       placeholder="Enter password"
       id="pwd"
-      [class.border-danger]="passInvalid"
     />
-    <div *ngIf="passField.errors && passField.dirty" class="text-danger">
+    <!-- [class.border-danger]="passInvalid" -->
+    <!-- <div *ngIf="passField.errors && passField.dirty" class="text-danger">
       <p *ngIf="passField.hasError('required')">El password es requerido.</p>
       <p *ngIf="passField.hasError('minlength')">
         El password debe tener 8 dígitos o más.
       </p>
-    </div>
+    </div> -->
   </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
+  <br>
+  <button type="submit" class="btn btn-primary" routerLink="movimientos" routerLinkActive="active" aria-current="page">Enviar </button>
 </form>
+</div>
+

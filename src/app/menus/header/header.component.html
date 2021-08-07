@@ -33,13 +33,39 @@
           >
         </li>
         <li class="nav-item">
-          <a
+          <!-- <a
             class="nav-link"
-            routerLink="/iniciar-sesion"
+            routerLink="Login"
             routerLinkActive="active"
             aria-current="page"
             >Iniciar Sesión</a
+          > -->
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
           >
+            Iniciar Sesión
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <app-login></app-login>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
       <form class="d-flex">

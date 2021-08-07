@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,21 +19,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get mailField() {
-    return this.form.get('mail');
-  }
+  // get mailField() {
+  //   return this.form.get('mail');
+  // }
 
-  get passField() {
-    return this.form.get('password');
-  }
+  // get passField() {
+  //   return this.form.get('password');
+  // }
 
-  get passInvalid() {
-    return this.passField.touched && !this.passField.valid;
-  }
+  // get passInvalid() {
+  //   return this.passField.touched && !this.passField.valid;
+  // }
 
-  get mailInvalid() {
-    return this.mailField.touched && !this.mailField.valid;
-  }
+  // get mailInvalid() {
+  //   return this.mailField.touched && !this.mailField.valid;
+  // }
 
   onEnviar(event: Event) {
     event.preventDefault(); //Cancela la funcionalidad por default.
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
       console.log(this.form.value); //se puede enviar al servidor...
     } else {
       this.form.markAllAsTouched(); //Activa todas las validaciones
-    }
+    };
+    
   }
 }
