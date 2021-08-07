@@ -1,19 +1,48 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark sticky-md-top" style="background-color:#2E2B2B;">
-    <div class="container-fluid">
-        <a class="navbar-brand ps-3" href="index.html">WAIILO</a>
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item px-1">
-                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ventanaModal">Registrarse</button>
+<nav
+  class="sb-topnav navbar navbar-expand navbar-dark sticky-md-top"
+  style="background-color: #2e2b2b"
+>
+  <div class="container-fluid">
+    <div>
+      <img
+        src="/assets/img/logo2W.png"
+        alt="Logo pequeño"
+        class=""
+        style="width: 10%"
+      />
+      <a class="navbar-brand ps-3" href="index.html">WAIILO</a>
+    </div>
 
-                <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="etiquetaReg" aria-hidden="true">
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+      <li class="nav-item px-1">
+        <button
+          class="btn btn-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#ventanaModal"
+        >
+          Registrarse
+        </button>
+
+        <div
+          class="modal fade"
+          id="ventanaModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="etiquetaReg"
+          aria-hidden="true"
+        >
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="etiquetaReg">Registrarse</h5>
-                <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <button
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Cerrar"
+                ></button>
               </div>
               <div class="modal-body">
-              <form>
+                <form>
                   <div class="row g-3 mb-2">
                     <div class="col">
                       <label for="" class="form-label">Nombre</label>
@@ -32,7 +61,7 @@
                       />
                     </div>
                   </div>
-              
+
                   <div class="mb-2">
                     <label for="exampleInputEmail1" class="form-label"
                       >Email</label
@@ -44,7 +73,7 @@
                       aria-describedby="emailHelp"
                     />
                   </div>
-              
+
                   <div class="mb-2">
                     <label for="inputPassword6" class="col-form-label">
                       Contraseña
@@ -65,7 +94,7 @@
                       </div>
                     </div>
                   </div>
-              
+
                   <div class="mb-2">
                     <label for="inputPassword6" class="col-form-label">
                       Repita la contraseña
@@ -86,12 +115,12 @@
                       </div>
                     </div>
                   </div>
-              
+
                   <div class="mb-2">
                     <label for="" class="form-label">DNI</label>
                     <input type="number" class="form-control" id="InputDni" />
                   </div>
-              
+
                   <div class="form-check mb-2">
                     <input
                       class="form-check-input"
@@ -107,33 +136,49 @@
                       You must agree before submitting.
                     </div>
                   </div>
-              
+
                   <button type="submit" class="btn btn-primary mt-2">
                     Registrarme
                   </button>
                 </form>
               </div>
-                 <!-- <app-register></app-register> -->
-             
+              <!-- <app-register></app-register> -->
             </div>
           </div>
         </div>
       </li>
       <li class="nav-item px-1">
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ventanaLogin">
+        <button
+          class="btn btn-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#ventanaLogin"
+        >
           Iniciar Sesion
         </button>
-        <div class="modal fade" id="ventanaLogin" tabindex="-1" role="dialog" aria-labelledby="etiquetaReg" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="ventanaLogin"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="etiquetaReg"
+          aria-hidden="true"
+        >
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="etiquetaReg">Iniciar Sesion</h5>
-                <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                <button
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Cerrar"
+                ></button>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <label for="exampleInputEmail1" class="form-label"
+                      >Email</label
+                    >
                     <input
                       type="email"
                       class="form-control"
@@ -142,18 +187,28 @@
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
+                    <label for="exampleInputPassword1" class="form-label"
+                      >Contraseña</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                    />
                   </div>
                   <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="exampleCheck1"
+                    />
                     <label class="form-check-label" for="exampleCheck1"
                       >Recuerda mi cuenta</label
                     >
                   </div>
                   <button type="submit" class="btn btn-primary">Aceptar</button>
                 </form>
-                
+
                 <!-- <app-login></app-login> -->
               </div>
             </div>
