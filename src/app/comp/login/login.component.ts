@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,40 +8,28 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  mail = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.emailPattern),
+  ]);
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      mail: ['', [Validators.required, Validators.email]],
-    });
-  }
+  passwordPattern =
+    '/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&]{8,15}/';
+  password = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.passwordPattern),
+    Validators.minLength(8),
+  ]);
+
+  constructor() {}
 
   ngOnInit(): void {}
+  get mailField() {
+    return this.mail;
+  }
 
-  // get mailField() {
-  //   return this.form.get('mail');
-  // }
-
-  // get passField() {
-  //   return this.form.get('password');
-  // }
-
-  // get passInvalid() {
-  //   return this.passField.touched && !this.passField.valid;
-  // }
-
-  // get mailInvalid() {
-  //   return this.mailField.touched && !this.mailField.valid;
-  // }
-
-  onEnviar(event: Event) {
-    event.preventDefault(); //Cancela la funcionalidad por default.
-    if (this.form.valid) {
-      console.log(this.form.value); //se puede enviar al servidor...
-    } else {
-      this.form.markAllAsTouched(); //Activa todas las validaciones
-    };
-    
+  get passwordField() {
+    return this.password;
   }
 }
