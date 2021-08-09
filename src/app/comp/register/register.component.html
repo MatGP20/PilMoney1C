@@ -1,99 +1,165 @@
 <form class="container-fluid col-10 my-5 mx-auto">
-    <div class="row g-3 mb-2">
-      <div class="col">
-        <label for="" class="form-label">Nombre</label>
+  <div class="row g-3 mb-2">
+    <div class="col">
+      <label for="" class="form-label">Nombre</label>
+      <input type="text" class="form-control" aria-label="First name" />
+    </div>
+    <div class="col">
+      <label for="" class="form-label">Apellido</label>
+      <input type="text" class="form-control" aria-label="Last name" />
+    </div>
+  </div>
+
+  <div class="form-group my-3 py-2">
+    <div class="input-group">
+      <div class="form-floating col">
         <input
-          type="text"
+          type="email"
           class="form-control"
-          aria-label="First name"
+          [formControl]="mail"
+          id="floatingEmail"
+          placeholder="Email"
+          value="ejemplo@gmail.com"
         />
+        <label for="floatingEmail">Ingrese su dirección de e-mail</label>
       </div>
-      <div class="col">
-        <label for="" class="form-label">Apellido</label>
+    </div>
+    <div
+      *ngIf="mailField.invalid && (mailField.dirty || mailField.touched)"
+      class="text-danger"
+    >
+      <small *ngIf="mailField.hasError('pattern')"> Email no valido </small>
+      <small *ngIf="passwordField.hasError('required')">
+        Debe ingresar una dirección de e-mail
+      </small>
+    </div>
+  </div>
+  <div class="form-group my-3 py-2">
+    <div class="input-group">
+      <div class="form-floating col">
         <input
-          type="text"
+          type="password"
           class="form-control"
-          aria-label="Last name"
+          [formControl]="password"
+          id="floatingEmail"
+          placeholder="Contraseña"
+          value="ejemplo@gmail.com"
         />
+        <label for="floatingEmail">Ingrese su contraseña</label>
       </div>
     </div>
-
-    <div class="mb-2">
-      <label for="exampleInputEmail1" class="form-label"
-        >Email</label
-      >
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-      />
+    <div
+      class="p-3"
+      *ngIf="
+        passwordField.invalid && (passwordField.dirty || passwordField.touched)
+      "
+      class="text-danger"
+    >
+      <small *ngIf="passwordField.hasError('pattern')">
+        La clave debe contener al menos una letra Mayuscula, una Minuscula y un
+        simbolo.
+      </small>
+      <small *ngIf="passwordField.hasError('minlength')">
+        El minimo de digitos requerido es 8.
+      </small>
+      <small *ngIf="passwordField.hasError('required')">
+        La contraseña es requerida.
+      </small>
     </div>
+  </div>
 
-    <div class="mb-2">
-      <label for="inputPassword6" class="col-form-label">
-        Contraseña
-      </label>
-      <div class="row">
-        <div class="col-auto">
-          <input
-            type="password"
-            id="inputPassword6"
-            class="form-control"
-            aria-describedby="passwordHelpInline"
-          />
-        </div>
-        <div class="col-auto">
-          <span id="passwordHelpInline" class="form-text">
-            Must be 8-20 characters long.
-          </span>
-        </div>
+  <div class="form-group my-3 py-2">
+    <div class="input-group">
+      <div class="form-floating col">
+        <input
+          type="password"
+          class="form-control"
+          [formControl]="password"
+          id="floatingEmail"
+          placeholder="Contraseña"
+          value="ejemplo@gmail.com"
+        />
+        <label for="floatingEmail">Ingrese su contraseña</label>
       </div>
     </div>
-
-    <div class="mb-2">
-      <label for="inputPassword6" class="col-form-label">
-        Repita la contraseña
-      </label>
-      <div class="row">
-        <div class="col-auto">
-          <input
-            type="password"
-            id="inputPassword6"
-            class="form-control"
-            aria-describedby="passwordHelpInline"
-          />
-        </div>
-        <div class="col-auto">
-          <span id="passwordHelpInline" class="form-text">
-            Must be 8-20 characters long.
-          </span>
-        </div>
-      </div>
+    <div
+      class="p-3"
+      *ngIf="
+        passwordField.invalid && (passwordField.dirty || passwordField.touched)
+      "
+      class="text-danger"
+    >
+      <small *ngIf="passwordField.hasError('pattern')">
+        La clave debe contener al menos una letra Mayuscula, una Minuscula y un
+        simbolo.
+      </small>
+      <small *ngIf="passwordField.hasError('minlength')">
+        El minimo de digitos requerido es 8.
+      </small>
+      <small *ngIf="passwordField.hasError('required')">
+        La contraseña es requerida.
+      </small>
     </div>
+  </div>
+  <div class="mb-2">
+    <label for="" class="form-label">DNI</label>
+    <input type="number" class="form-control" id="InputDni" />
+  </div>
 
-    <div class="mb-2">
-      <label for="" class="form-label">DNI</label>
-      <input type="number" class="form-control" id="InputDni" />
+  <div class="form-group col-md-4">
+    <label class="px-1" for="inputState">Provincia</label>
+    <select id="inputState" class="form-control">
+      <option selected>Seleccione una Provincia</option>
+      <option>Buenos Aires</option>
+      <option>Catamarca</option>
+      <option>Chaco</option>
+      <option>Chubut</option>
+      <option>Córdoba</option>
+      <option>Corrientes</option>
+      <option>Entre Rios</option>
+      <option>Formosa</option>
+      <option>Jujuy</option>
+      <option>La Pampa</option>
+      <option>La Rioja</option>
+      <option>Mendoza</option>
+      <option>Misiones</option>
+      <option>Nequén</option>
+      <option>Rio Negro</option>
+      <option>Salta</option>
+      <option>San Juan</option>
+      <option>San Luis</option>
+      <option>Santa Cruz</option>
+      <option>Santa Fé</option>
+      <option>Santiago del Estero</option>
+      <option>Tierra del Fuego, Antártida e Isla del Atlántico Sur</option>
+      <option>Tucumán</option>
+    </select>
+  </div>
+
+  <div class="row g-3 mb-2">
+    <div class="col">
+      <label for="" class="form-label">Ciudad</label>
+      <input type="text" class="form-control" aria-label="First name" />
     </div>
-
-    <div class="form-check mb-2">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="invalidCheck"
-        required
-      />
-      <label class="form-check-label" for="invalidCheck">
-        Acepto los terminos y condiciones.
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
+    <div class="col">
+      <label for="" class="form-label">Codigo postal</label>
+      <input type="text" class="form-control" aria-label="Last name" />
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-dark mt-2">
-      Registrarme
-    </button>
-  </form>
+  <div class="form-check mb-2">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      value=""
+      id="invalidCheck"
+      required
+    />
+    <label class="form-check-label" for="invalidCheck">
+      Acepto los terminos y condiciones.
+    </label>
+    <div class="invalid-feedback">You must agree before submitting.</div>
+  </div>
+
+  <button type="submit" class="btn btn-dark mt-2">Registrarme</button>
+</form>
