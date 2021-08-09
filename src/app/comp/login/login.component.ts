@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
-// import { RouterLink, RouterLinkWithHref } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
     return this.password;
   }
 
+  // redirect(){
+  //     RouterLink {component: "HomeComponent"}
+  // }
   // onEnviar(event: Event)
   // {
   //   // event.preventDefault(); //Cancela la funcionalidad por default.
