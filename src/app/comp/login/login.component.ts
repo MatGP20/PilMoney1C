@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   ]);
 
   passwordPattern =
-    '/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&]{8,15}/';
+    '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}';
   password = new FormControl('', [
     Validators.required,
     Validators.pattern(this.passwordPattern),
