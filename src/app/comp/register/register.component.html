@@ -1,15 +1,33 @@
 <form class="container-fluid col-10 my-5 mx-auto">
-  <div class="row g-3 mb-2">
-    <div class="col">
-      <label for="" class="form-label">Nombre</label>
-      <input type="text" class="form-control" aria-label="First name" />
+  <div class="form-group my-3 py-2 row">
+    <div class="col-6">
+      <div class="form-floating col">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingNombre"
+          placeholder="Nombre"
+          value=""
+          required
+        />
+        <label for="floatingNombre">Nombre</label>
+      </div>
     </div>
-    <div class="col">
-      <label for="" class="form-label">Apellido</label>
-      <input type="text" class="form-control" aria-label="Last name" />
+    <div class="col-6">
+      <div class="form-floating col">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingApellido"
+          placeholder="Apellido"
+          value=""
+          required
+        />
+        <label for="floatingApellido">Apellido</label>
+      </div>
     </div>
   </div>
-
+  
   <div class="form-group my-3 py-2">
     <div class="input-group">
       <div class="form-floating col">
@@ -101,9 +119,18 @@
       </small>
     </div>
   </div>
-  <div class="mb-2">
-    <label for="" class="form-label">DNI</label>
-    <input type="number" class="form-control" id="InputDni" />
+  <div class="col">
+    <div class="form-floating col">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingDni"
+        placeholder="DNI"
+        value=""
+        required
+      />
+      <label for="floatingDni">DNI</label>
+    </div>
   </div>
 
   <div class="form-group col-md-4">
