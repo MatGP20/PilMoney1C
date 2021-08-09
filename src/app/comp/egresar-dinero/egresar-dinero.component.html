@@ -1,12 +1,13 @@
-<div class="row">
+<div class="col-8 mx-auto my-5">
+<div class="row card border-4 p-3">
   <div class="col mb-4">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-      <span class="text-muted">Balance</span>
+      <span class="text-muted">TRANSFERENCIA</span>
       <span class="badge badge-secondary badge-pill">3</span>
     </h4>
     <ul class="list-group mb-3">
       <li class="list-group-item d-flex justify-content-between">
-        <span>Total (AR$)</span>
+        <span>Saldo (AR$)</span>
         <strong>$20000</strong>
       </li>
     </ul>
@@ -25,7 +26,7 @@
       </div>
     </form>
     <hr class="mb-4" />
-    <h4 class="mb-3">Datos cuenta</h4>
+    <h4 class="mb-3 text muted">Datos cuenta</h4>
     <form class="needs-validation" novalidate>
       <div class="row">
         <div class="col mb-3">
@@ -58,7 +59,7 @@
       <div class="row">
         <div class="col-md-5 mb-3">
           <label for="country">Concepto</label>
-          <select class="custom-select d-block w-100" id="country" required>
+          <select class="custom-select d-block w-100 mt-2" id="country" required>
             <option value="">Elija una opcion...</option>
             <option>Alquileres</option>
             <option>Cuota</option>
@@ -73,14 +74,14 @@
 
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="same-address" />
-        <label class="custom-control-label" for="same-address">
-          ¿ Desea agendar la cuenta ?</label
-        >
+        <label class="custom-control-label ms-2" for="same-address">
+          ¿ Desea agendar la cuenta ?</label>
       </div>
 
-      <button class="btn btn-dark btn-lg btn-block" type="submit">
+      <button class="btn btn-dark btn-lg btn-block my-3" type="submit" routerLink="movimientos">
         Confirmar
       </button>
     </form>
   </div>
+</div>
 </div>
