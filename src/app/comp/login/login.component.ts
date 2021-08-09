@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+// import { RouterLink, RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -32,4 +32,17 @@ export class LoginComponent implements OnInit {
   get passwordField() {
     return this.password;
   }
+
+  // onEnviar(event: Event)
+  // {
+  //   // event.preventDefault(); //Cancela la funcionalidad por default.
+  //   if (this.password.valid)
+  //   {
+  //     route = new RouterLink(this.);  
+  //   }
+  //   else
+  //   {
+  //     this.password.markAllAsTouched(); //Activa todas las validaciones
+  //   }
+  // }
 }

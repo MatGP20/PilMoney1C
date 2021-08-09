@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: 'Registro', component: RegisterComponent },
   { path: 'movimientos', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'ingreso', component: IngresarDineroComponent },
-  { path: 'egreso', component: EgresarDineroComponent },
+  { path: 'movimientos/ingreso', component: IngresarDineroComponent },
+  { path: 'movimientos/egreso', component: EgresarDineroComponent },
 ];
 
 @NgModule({
