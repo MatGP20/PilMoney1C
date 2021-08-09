@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header col-12 col-sm-6 mx-auto">
   <h5 class="modal-title" id="exampleModalLabel">INICIAR SESION</h5>
   <button
     type="button"
@@ -7,16 +7,22 @@
     aria-label="Close"
   ></button>
 </div>
-<div class="modal-body">
-  <form> 
+<div class="modal-body col-12 col-sm-6 mx-auto">
+  <form>
     <!-- (ngSubmit)="onEnviar($event)" -->
     <div class="form-group my-3 py-2">
       <div class="input-group">
         <div class="form-floating col">
-          <input type="email" class="form-control" [formControl]="mail" id="floatingEmail" placeholder="Email" value="ejemplo@gmail.com">
+          <input
+            type="email"
+            class="form-control"
+            [formControl]="mail"
+            id="floatingEmail"
+            placeholder="Email"
+            value="ejemplo@gmail.com"
+          />
           <label for="floatingEmail">Ingrese su dirección de e-mail</label>
         </div>
-        
       </div>
       <div
         *ngIf="mailField.invalid && (mailField.dirty || mailField.touched)"
@@ -32,9 +38,16 @@
     <div class="form-group my-3 py-2">
       <div class="input-group">
         <div class="form-floating col">
-          <input type="password" class="form-control" [formControl]="password" id="floatingEmail" placeholder="Contraseña" value="ejemplo@gmail.com">
+          <input
+            type="password"
+            class="form-control"
+            [formControl]="password"
+            id="floatingEmail"
+            placeholder="Contraseña"
+            value="ejemplo@gmail.com"
+          />
           <label for="floatingEmail">Ingrese su contraseña</label>
-        </div>        
+        </div>
       </div>
       <div
         class="p-3"
@@ -45,7 +58,8 @@
         class="text-danger"
       >
         <small *ngIf="passwordField.hasError('pattern')">
-          La clave debe contener al menos una letra Mayuscula, una Minuscula y un simbolo.
+          La clave debe contener al menos una letra Mayuscula, una Minuscula y
+          un simbolo.
         </small>
         <small *ngIf="passwordField.hasError('minlength')">
           El minimo de digitos requerido es 8.
@@ -57,9 +71,13 @@
     </div>
   </form>
   <div class="col text-center py-4">
-    <button type="Button" class="btn btn-dark" routerLink="movimientos" routerLinkActive="active">
-        INGRESAR
+    <button
+      type="Button"
+      class="btn btn-dark"
+      routerLink="movimientos"
+      routerLinkActive="active"
+    >
+      INGRESAR
     </button>
   </div>
 </div>
-
