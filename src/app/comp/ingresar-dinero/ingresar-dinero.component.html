@@ -1,1 +1,102 @@
+<body class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 order-md-1">
+        <form class="needs-validation" novalidate>
+          <h4 class="mb-3">Ingresar Dinero</h4>
 
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input
+                id="credit"
+                name="paymentMethod"
+                type="radio"
+                class="custom-control-input"
+                checked
+                required
+              />
+              <label class="custom-control-label" for="credit"
+                >Tarjeta de crédito</label
+              >
+            </div>
+            <div class="custom-control custom-radio">
+              <input
+                id="debit"
+                name="paymentMethod"
+                type="radio"
+                class="custom-control-input"
+                required
+              />
+              <label class="custom-control-label" for="debit"
+                >Tarjeta de débito</label
+              >
+            </div>
+            <div class="custom-control custom-radio">
+              <input
+                id="paypal"
+                name="paymentMethod"
+                type="radio"
+                class="custom-control-input"
+                required
+              />
+              <label class="custom-control-label" for="paypal">Paypal</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Nombre </label>
+              <input
+                type="text"
+                class="form-control"
+                id="cc-name"
+                placeholder=""
+                required
+              />
+              <small class="text-muted">Nombre en la tarjeta</small>
+              <div class="invalid-feedback">Campo requerido</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-number">Número de tarjeta</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cc-number"
+                placeholder=""
+                required
+              />
+              <div class="invalid-feedback">Campo requerido</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Vencimiento</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cc-expiration"
+                placeholder=""
+                required
+              />
+              <div class="invalid-feedback">Campo requerido</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">CVV</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cc-cvv"
+                placeholder=""
+                required
+              />
+              <div class="invalid-feedback">Campo obligatorio</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit">
+            Depositar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
