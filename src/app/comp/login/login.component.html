@@ -5,6 +5,7 @@
     class="btn-close"
     data-bs-dismiss="modal"
     aria-label="Close"
+    routerLink=""
   ></button>
 </div>
 <div class="modal-body col-12 col-sm-6 mx-auto">
@@ -71,11 +72,14 @@
     </div>
   </form>
   <div class="col text-center py-4">
-    <button
+    <div *ngIf="true">
+      <button
       type="Button"
       class="btn btn-dark"
-      routerLink="">
+      routerLink="../movimientos">
       INGRESAR
     </button>
+    </div>
+    
   </div>
 </div>
