@@ -76,7 +76,8 @@
       <button
       type="Button"
       class="btn btn-dark"
-      routerLink="../movimientos">
+      routerLink="../movimientos"
+      [disabled]="passwordField.invalid || mailField.invalid">
       INGRESAR
     </button>
     </div>
