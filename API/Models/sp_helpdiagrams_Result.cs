@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API.Models.Models
+namespace API.Models
 {
     using System;
     

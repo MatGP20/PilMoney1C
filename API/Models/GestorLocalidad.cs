@@ -11,7 +11,7 @@ namespace API.Models
   {
     string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
 
-    public List<Localidad> ObtenerLocalidad()
+    public List<Localidad> ObtenerLocalidadPorPr(int iD_Provincia)
     {
       List<Localidad> listaLocalidades = new List<Localidad>();
 
@@ -19,7 +19,8 @@ namespace API.Models
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "SELECT * FROM Localidad";
+      cm.CommandText = "SELECT * FROM Localidad WHERE ID_Provincia = @iD_Provincia";
+      cm.Parameters.Add(new SqlParameter("@iD_Provincia", iD_Provincia));
 
       SqlDataReader dr = cm.ExecuteReader();
 
@@ -39,5 +40,7 @@ namespace API.Models
 
       return listaLocalidades;
     }
+
+    
   }
 }

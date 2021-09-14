@@ -7,20 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace API.Models.Models
+namespace API.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Cuenta
+    public partial class sysdiagram
     {
-        public string ID_Cuenta { get; set; }
-        public string Cuit_Cuil { get; set; }
-        public string ID_Tipo_Cuenta { get; set; }
-        public string ID_movimiento { get; set; }
-    
-        public virtual Cliente Cliente { get; set; }
-        public virtual Tipo_Cuenta Tipo_Cuenta { get; set; }
-        public virtual Movimiento Movimiento { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
