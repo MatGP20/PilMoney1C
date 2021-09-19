@@ -34,6 +34,8 @@ namespace API.Models
       cx.Close();
     }
 
+    
+
     public void ModificarCliente(Cliente c)
     {
       SqlConnection cx = new SqlConnection(conection);
@@ -51,6 +53,63 @@ namespace API.Models
       cm.ExecuteNonQuery();
 
       cx.Close();
+    }
+
+    public List<Localidad> ObtenerLocalidadPorPr(int iD_Provincia)
+    {
+      List<Localidad> listaLocalidades = new List<Localidad>();
+
+      SqlConnection cx = new SqlConnection(conection);
+      cx.Open();
+
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "SELECT * FROM Localidad WHERE ID_Provincia = @iD_Provincia";
+      cm.Parameters.Add(new SqlParameter("@iD_Provincia", iD_Provincia));
+
+      SqlDataReader dr = cm.ExecuteReader();
+
+      while (dr.Read())
+      {
+        int ID_Localidad = dr.GetInt32(0);
+        string Localidad1 = dr.GetString(1).Trim();
+        string Codigo_Postal = dr.GetString(2);
+        int ID_Provincia = dr.GetInt32(3);
+
+        Localidad Local = new Localidad(ID_Localidad, Localidad1, Codigo_Postal, ID_Provincia);
+        listaLocalidades.Add(Local);
+      }
+
+      dr.Close();
+      cx.Close();
+
+      return listaLocalidades;
+    }
+
+    public List<Provincia> ObtenerProvincia()
+    {
+      List<Provincia> listaProvincias = new List<Provincia>();
+
+      SqlConnection cx = new SqlConnection(conection);
+      cx.Open();
+
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "SELECT * FROM Provincia";
+
+      SqlDataReader dr = cm.ExecuteReader();
+
+      while (dr.Read())
+      {
+        int ID_Provincia = dr.GetInt32(0);
+        string Provincia1 = dr.GetString(1).Trim();
+
+        Provincia prov = new Provincia(ID_Provincia, Provincia1);
+        listaProvincias.Add(prov);
+      }
+
+      dr.Close();
+      cx.Close();
+
+      return listaProvincias;
     }
   }
 }

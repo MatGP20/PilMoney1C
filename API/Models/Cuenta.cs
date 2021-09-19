@@ -17,7 +17,7 @@ namespace API.Models
           ID_movimiento = iD_movimiento;
         }
 
-        public int ID_Cuenta { get; set; }
+        public int ID_Cuenta { get; set;}
         public int Cuit_Cuil { get; }
         public int ID_Tipo_Cuenta { get; }
         public int ID_movimiento { get; }

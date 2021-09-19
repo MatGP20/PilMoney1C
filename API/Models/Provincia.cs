@@ -21,6 +21,6 @@ namespace API.Models
         public string Provincia1 { get; }
     
         
-        public virtual ICollection<Localidad> Localidads { get; }
+        //public virtual ICollection<Localidad> Localidads { get; }
     }
 }

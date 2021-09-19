@@ -7,14 +7,14 @@ namespace API.Models
     {
         private int iD_Localidad;
         private string localidad1;
-        private int codigo_Postal;
+        private string codigo_Postal;
         private int iD_Provincia;
         public Localidad()
         {
             
         }
 
-        public Localidad(int ID_Localidad, string Localidad1, int Codigo_Postal, int ID_Provincia)
+        public Localidad(int ID_Localidad, string Localidad1, string Codigo_Postal, int ID_Provincia)
         {
           this.iD_Localidad = ID_Localidad;
           this.localidad1 = Localidad1;
@@ -24,11 +24,11 @@ namespace API.Models
 
         public int ID_Localidad { get=>iD_Localidad; }
         public string Localidad1 { get=>localidad1; }
-        public int Codigo_Postal { get=>codigo_Postal; }
+        public string Codigo_Postal { get=>codigo_Postal; }
         public int ID_Provincia { get=>iD_Provincia; }
     
         
-        public virtual Cliente Clientes { get; set; }
-        public virtual Provincia Provincia { get; }
+        //public virtual Cliente Clientes { get; set; }
+        //public virtual Provincia Provincia { get; }
     }
 }

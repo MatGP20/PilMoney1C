@@ -29,7 +29,7 @@ namespace API.Models
       cx.Close();
     }
 
-    public List<Cuenta> ListarCuenta()
+    public List<Cuenta> ListarCuenta(int Cuil_Cuit)
     {
       List<Cuenta> listaCuenta = new List<Cuenta>();
 
@@ -37,7 +37,8 @@ namespace API.Models
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "SELECT * FROM Cuentas";
+      cm.CommandText = "SELECT * FROM Cuenta WHERE Cuit_Cuil = @cuit_Cuil";
+      cm.Parameters.Add(new SqlParameter("@cuit_Cuil", Cuil_Cuit));
 
       SqlDataReader dr = cm.ExecuteReader();
       while (dr.Read())

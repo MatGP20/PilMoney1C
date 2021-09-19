@@ -46,7 +46,7 @@
     </Key>
     <Property Name="ID_movimiento" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ID_tipo_Movimiento" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-    <Property Name="Descripción" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Fecha_Hora" Type="DateTime" Precision="3" />
     <Property Name="Monto" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="ID_cuenta_origen" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />

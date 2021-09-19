@@ -11,7 +11,7 @@ namespace API.Models
   {
     string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
 
-    public List<Localidad> ObtenerLocalidadPorPr(int iD_Provincia)
+   /* public List<Localidad> ObtenerLocalidadPorPr(int iD_Provincia)
     {
       List<Localidad> listaLocalidades = new List<Localidad>();
 
@@ -39,7 +39,7 @@ namespace API.Models
       cx.Close();
 
       return listaLocalidades;
-    }
+    }*/
 
     
   }

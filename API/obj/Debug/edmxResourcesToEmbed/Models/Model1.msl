@@ -42,7 +42,7 @@
         <MappingFragment StoreEntitySet="Movimientos">
           <ScalarProperty Name="ID_movimiento" ColumnName="ID_movimiento" />
           <ScalarProperty Name="ID_tipo_Movimiento" ColumnName="ID_tipo_Movimiento" />
-          <ScalarProperty Name="Descripción" ColumnName="Descripción" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripción" />
           <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
           <ScalarProperty Name="Monto" ColumnName="Monto" />
           <ScalarProperty Name="ID_cuenta_origen" ColumnName="ID_cuenta_origen" />

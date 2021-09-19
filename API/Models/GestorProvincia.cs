@@ -1,3 +1,4 @@
+using API.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,7 +13,7 @@ namespace API.Models
 
     string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
 
-    
+    /*
     public List<Provincia> ObtenerProvincia()
     {
       List<Provincia> listaProvincias = new List<Provincia>();
@@ -39,7 +40,7 @@ namespace API.Models
 
       return listaProvincias;
     }
-
+    */
 
   }
 }
