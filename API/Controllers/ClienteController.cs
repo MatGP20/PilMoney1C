@@ -19,8 +19,13 @@ namespace API.Controllers
     {
       GestorCliente cliente = new GestorCliente();
       return cliente.BuscarCliente(id);
-    }
 
+    }
+    public void Post(Cliente c)
+    {
+      GestorCliente cliente = new GestorCliente();
+       cliente.RegistrarCliente(c);
+    }
 
   }
 }

@@ -7,8 +7,9 @@ import { HeaderComponent } from './menus/header/header.component';
 import { FooterComponent } from './menus/footer/footer.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { HomeComponent } from './pages/home/home.component';
-import { CompModule } from './comp/comp.module'
-
+import { CompModule } from './comp/comp.module';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,14 +17,16 @@ import { CompModule } from './comp/comp.module'
     HeaderComponent,
     FooterComponent,
     LandingComponent,
-    HomeComponent       
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CompModule
+    CompModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
