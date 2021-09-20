@@ -149,8 +149,12 @@
 
   <div class="form-group col-md-4">
     <label class="px-1 my-2" for="inputState">Provincia</label>
-    <select  id="inputState" class="form-control " *ngFor="let element of provincia">
-      <option selected>{{element.provincia}}</option>
+    <select
+      id="inputState"
+      class="form-control"
+      *ngFor="let data of provinciaArray"
+    >
+      <option selected>{{ data.provinciaArray }}</option>
       <!-- <option>Buenos Aires</option>
       <option>Catamarca</option>
       <option>Chaco</option>
@@ -192,7 +196,7 @@
       type="file"
       name="mi-archivo"
       id="mi-archivo"
-      formControlName="imagenDNI"
+      formControlName="foto_frontal"
       (change)="capturarFile($event)"
       required
     />
@@ -208,7 +212,7 @@
       type="file"
       name="mi-archivo"
       id="mi-archivo"
-      formControlName="imagenDNI"
+      formControlName="dni_delante"
       (change)="capturarFile($event)"
       required
     />
@@ -224,7 +228,7 @@
       type="file"
       name="mi-archivo"
       id="mi-archivo"
-      formControlName="imagenDNI"
+      formControlName="dni_detras"
       (change)="capturarFile($event)"
       required
     />

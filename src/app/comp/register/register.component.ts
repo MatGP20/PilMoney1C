@@ -13,9 +13,8 @@ import { RegisterService } from 'src/app/servicios/register.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
   provincia!: Provincia;
-  provinciaArray : any[] = [];
+  provinciaArray: any[] = [];
   public previsualizacion: string = '';
   public archivos: any = [];
   myForm = this.formBuilder.group({
@@ -84,7 +83,20 @@ export class RegisterComponent implements OnInit {
     this.archivos = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.provinciaService.getProvincia().subscribe((data: Provincia) => {
+      {
+        console.log(data);
+        let jsonObject = {data};
+        // this.provinciaArray.forEach(
+        //   (item) => (this.provinciaArray[item.iD_provincia] = item.provincia)
+        // );
+        let json = JSON.stringify(jsonObject);
+        console.log(data.provincia);
+        console.log(json);
+      }
+    });
+  }
   // get mailField() {
   //   return this.mail;
   // }
@@ -100,13 +112,18 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-  obtenerProvincia(event: Provincia) {
-    this.provinciaService.getProvincia().subscribe((data) => {
-      {
-        console.log(data);
-        this.provinciaArray[this.provincia.iD_provincia]=data.iD_provincia;
-        this.provincia.provincia=data.provincia;
-      }
-    });
-  }
+  // obtenerProvincia(event: Provincia) {
+  //   this.provinciaService.getProvincia().subscribe((data: Provincia) => {
+  //     {
+  //       console.log(data);
+  //       let jsonObject = {};
+  //       this.provinciaArray.forEach(
+  //         (data) => (this.provinciaArray[data.iD_provincia] = data.provincia)
+  //       );
+  //       let json = JSON.stringify(jsonObject);
+  //       console.log(this.provinciaArray);
+  //       console.log(json);
+  //     }
+  //   });
+  // }
 }
