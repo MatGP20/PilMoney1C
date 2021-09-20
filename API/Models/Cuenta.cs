@@ -9,16 +9,18 @@ namespace API.Models
         {
         }
 
-        public Cuenta(int iD_Cuenta, int cuit_Cuil, int iD_Tipo_Cuenta, int iD_movimiento)
+        public Cuenta(int iD_Cuenta, string cBU, string cuit_Cuil, int iD_Tipo_Cuenta, int iD_movimiento)
         {
           ID_Cuenta = iD_Cuenta;
+          CBU = cBU;
           Cuit_Cuil = cuit_Cuil;
           ID_Tipo_Cuenta = iD_Tipo_Cuenta;
           ID_movimiento = iD_movimiento;
         }
 
         public int ID_Cuenta { get; set;}
-        public int Cuit_Cuil { get; }
+        public string CBU { get; set; }
+        public string Cuit_Cuil { get; }
         public int ID_Tipo_Cuenta { get; }
         public int ID_movimiento { get; }
     

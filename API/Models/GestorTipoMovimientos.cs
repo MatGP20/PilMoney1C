@@ -25,7 +25,7 @@ namespace API.Models
 
       while (dr.Read())
       {
-        int ID_tipo_Movimiento = dr.GetInt16(0);
+        int ID_tipo_Movimiento = dr.GetInt32(0);
         string Tipo_Movimiento = dr.GetString(1).Trim();
         
 

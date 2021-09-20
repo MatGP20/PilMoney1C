@@ -11,16 +11,16 @@ namespace API.Models
             
         }
 
-        public Tipo_Cuenta(string iD_Tipo_Cuenta, string tipo_Cuenta1)
+        public Tipo_Cuenta(int iD_Tipo_Cuenta, string tipo_Cuenta1)
         {
           ID_Tipo_Cuenta = iD_Tipo_Cuenta;
           Tipo_Cuenta1 = tipo_Cuenta1;
         }
 
-        public string ID_Tipo_Cuenta { get; }
+        public int ID_Tipo_Cuenta { get; }
         public string Tipo_Cuenta1 { get; }
     
         
-        public virtual ICollection<Cuenta> Cuentas { get; set; }
+        //public virtual ICollection<Cuenta> Cuentas { get; set; }
     }
 }

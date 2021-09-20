@@ -9,12 +9,16 @@ using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
-  [RoutePrefix("api/localidad")]
+  [RoutePrefix("api/tipocuenta")]
   [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
   public class TipoCuentaController : ApiController
     {
 
-      
+      public List<Tipo_Cuenta> Get()
+        {
+          GestorTipoCuenta tipoCuenta = new GestorTipoCuenta();
+          return tipoCuenta.ObtenerTipoCuenta();
+        }
 
     }
 }

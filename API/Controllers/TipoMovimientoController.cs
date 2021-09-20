@@ -9,18 +9,15 @@ using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
-  [RoutePrefix("api/cliente")]
+  [RoutePrefix("api/tipomovimiento")]
   [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-  public class ClienteController : ApiController
+  public class TipoMovimientoController : ApiController
     {
+        public List<Tipo_Movimientos> Get()
+        {
+          GestorTipoMovimientos tipoMovimiento = new GestorTipoMovimientos();
+          return tipoMovimiento.ObtenerTipoMovimientos();
+        }
 
-    // GET: api/Cuenta/5
-    public Cliente Get(string id)
-    {
-      GestorCliente cliente = new GestorCliente();
-      return cliente.BuscarCliente(id);
     }
-
-
-  }
 }

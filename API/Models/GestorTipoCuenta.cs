@@ -11,32 +11,32 @@ namespace API.Models
   {
     string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
 
-    public List<Tipo_Movimientos> ObtenerTipoMovimientos()
+    public List<Tipo_Cuenta> ObtenerTipoCuenta()
     {
-      List<Tipo_Movimientos> listaTipoMovimientos = new List<Tipo_Movimientos>();
+      List<Tipo_Cuenta> listaTipoCuenta = new List<Tipo_Cuenta>();
 
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "SELECT * FROM Tipo_Movimientos";
+      cm.CommandText = "SELECT * FROM Tipo_Cuenta";
 
       SqlDataReader dr = cm.ExecuteReader();
 
       while (dr.Read())
       {
-        int ID_tipo_Movimiento = dr.GetInt16(0);
-        string Tipo_Movimiento = dr.GetString(1).Trim();
+        int ID_Tipo_Cuenta = dr.GetInt32(0);
+        string Tipo_Cuenta1 = dr.GetString(1).Trim();
 
 
-        Tipo_Movimientos TMov = new Tipo_Movimientos(ID_tipo_Movimiento, Tipo_Movimiento);
-        listaTipoMovimientos.Add(TMov);
+        Tipo_Cuenta TCue = new Tipo_Cuenta(ID_Tipo_Cuenta, Tipo_Cuenta1);
+        listaTipoCuenta.Add(TCue);
       }
 
       dr.Close();
       cx.Close();
 
-      return listaTipoMovimientos;
+      return listaTipoCuenta;
     }
   }
 }
