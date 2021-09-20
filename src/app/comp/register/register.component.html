@@ -37,7 +37,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="form-group my-3 py-2">
     <div class="input-group">
       <div class="form-floating col">
@@ -139,7 +139,7 @@
         value=""
         required
       />
-      <label for="floatingDni">DNI</label>
+      <label for="floatingDni">Cuil-Cuit</label>
     </div>
   </div>
 
@@ -147,7 +147,7 @@
     <label class="px-1 my-2" for="inputState">Provincia</label>
     <select id="inputState" class="form-control">
       <option selected>Seleccione una Provincia</option>
-      <option>Buenos Aires</option>
+      <!-- <option>Buenos Aires</option>
       <option>Catamarca</option>
       <option>Chaco</option>
       <option>Chubut</option>
@@ -169,7 +169,7 @@
       <option>Santa Fé</option>
       <option>Santiago del Estero</option>
       <option>Tierra del Fuego, Antártida e Isla del Atlántico Sur</option>
-      <option>Tucumán</option>
+      <option>Tucumán</option> -->
     </select>
   </div>
 
@@ -178,9 +178,19 @@
       <label for="" class="form-label">Ciudad</label>
       <input type="text" class="form-control" aria-label="First name" />
     </div>
-    <div class="col">
-      <label for="" class="form-label">Codigo postal</label>
-      <input type="text" class="form-control" aria-label="Last name" />
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupFile01"
+        >Foto frontal</label
+      >
+      <input type="file" class="form-control" id="inputGroupFile01" />
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupFile01">DNI delante</label>
+      <input type="file" class="form-control" id="inputGroupFile01" />
+    </div>
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputGroupFile01">DNI detrás</label>
+      <input type="file" class="form-control" id="inputGroupFile01" />
     </div>
   </div>
 
@@ -198,5 +208,7 @@
     <div class="invalid-feedback">You must agree before submitting.</div>
   </div>
 
-  <button type="submit" class="btn btn-dark mt-2" routerLink="../movimientos">Registrarme</button>
+  <button type="submit" class="btn btn-dark mt-2" routerLink="../movimientos">
+    Registrarme
+  </button>
 </form>
