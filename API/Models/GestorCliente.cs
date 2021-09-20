@@ -17,14 +17,14 @@ namespace API.Models
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "INSERT INTO Cliente (cuit_Cuil, nombre, apellido, password, mail, iD_Localidad, domicilio) VALUES (@Cuit_Cuil, @Nombre, @Apellido, @Password, @Mail, @ID_Localidad, @Domicilio)";
+      cm.CommandText = "INSERT INTO Cliente (cuit_Cuil, nombre, apellido, password, mail, iD_Localidad, foto_Frontal, dNI_delante, dNI_detras, domicilio) VALUES (@Cuit_Cuil, @Nombre, @Apellido, @Password, @Mail, @ID_Localidad, @Foto_Frontal, @DNI_delante, @DNI_detras, @Domicilio)";
       cm.Parameters.Add(new SqlParameter("@Cuit_Cuil", nuevo.Cuit_Cuil));
       cm.Parameters.Add(new SqlParameter("@Nombre", nuevo.Nombre));
       cm.Parameters.Add(new SqlParameter("@Apellido", nuevo.Apellido));
       cm.Parameters.Add(new SqlParameter("@Password", nuevo.Password));
       cm.Parameters.Add(new SqlParameter("@Mail", nuevo.Mail));
       cm.Parameters.Add(new SqlParameter("@ID_Localidad", nuevo.ID_Localidad));
-      //cm.Parameters.Add(new SqlParameter("@Foto_Frontal", nuevo.Foto_Frontal)); foto_Frontal, dNI_delante, dNI_detras, @Foto_Frontal, @DNI_delante, @DNI_detras, 
+      //cm.Parameters.Add(new SqlParameter("@Foto_Frontal", nuevo.Foto_Frontal)); 
       //cm.Parameters.Add(new SqlParameter("@DNI_delante", nuevo.DNI_delante));
       //cm.Parameters.Add(new SqlParameter("@DNI_detras", nuevo.DNI_detras));
       cm.Parameters.Add(new SqlParameter("@Domicilio", nuevo.Domicilio));
@@ -55,12 +55,12 @@ namespace API.Models
         string Password = dr.GetString(3).Trim();
         string Mail = dr.GetString(4).Trim();
         int ID_Localidad = dr.GetInt32(5);
-        //string Foto_Frontal = dr.GetString(6).Trim();
-        //string DNI_Delante = dr.GetString(7).Trim();
-        //string DNI_Detras = dr.GetString(8).Trim();
+        string Foto_Frontal = dr.GetString(6).Trim();
+        string DNI_Delante = dr.GetString(7).Trim();
+        string DNI_Detras = dr.GetString(8).Trim();
         string Domicilio = dr.GetString(9).Trim();
 
-        Cliente cliente = new Cliente(Cuil_Cuit, Nombre, Apellido, Password, Mail, ID_Localidad, Domicilio);
+        Cliente cliente = new Cliente(Cuil_Cuit, Nombre, Apellido, Password, Mail, ID_Localidad, Foto_Frontal, DNI_Delante, DNI_Detras, Domicilio);
         clienteBuscado = cliente;
       }
 
