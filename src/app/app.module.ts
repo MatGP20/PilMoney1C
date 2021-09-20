@@ -7,10 +7,8 @@ import { HeaderComponent } from './menus/header/header.component';
 import { FooterComponent } from './menus/footer/footer.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { HomeComponent } from './pages/home/home.component';
-import { IngresarDineroComponent } from './comp/ingresar-dinero/ingresar-dinero.component';
-import { EgresarDineroComponent } from './comp/egresar-dinero/egresar-dinero.component';
-import { LoginComponent } from './comp/login/login.component';
-import { RegisterComponent } from './comp/register/register.component';
+import { CompModule } from './comp/comp.module'
+
 
 @NgModule({
   declarations: [
@@ -18,15 +16,12 @@ import { RegisterComponent } from './comp/register/register.component';
     HeaderComponent,
     FooterComponent,
     LandingComponent,
-    HomeComponent,
-    IngresarDineroComponent,
-    EgresarDineroComponent,
-    LoginComponent,
-    RegisterComponent
+    HomeComponent       
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CompModule
   ],
   providers: [],
   bootstrap: [AppComponent]
