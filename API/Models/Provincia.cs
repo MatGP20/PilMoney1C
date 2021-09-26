@@ -13,8 +13,8 @@ namespace API.Models
 
         public Provincia(int iD_Provincia, string provincia1)
         {
-          ID_Provincia = iD_Provincia;
-          Provincia1 = provincia1;
+          this.ID_Provincia = iD_Provincia;
+          this.Provincia1 = provincia1;
         }
 
         public int ID_Provincia { get; }

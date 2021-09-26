@@ -16,7 +16,8 @@ namespace API.Controllers
     public List<Localidad> Get(int id)
     {
       GestorCliente localidad = new GestorCliente();
-      return localidad.ObtenerLocalidadPorPr(id);
+      List < Localidad > listLocal = localidad.ObtenerLocalidadPorPr(id);
+      return listLocal;
     }
 
   }

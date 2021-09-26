@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl, FormBuilder } from '@angular/forms';
+import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Provincia } from 'src/app/interfaces/provincia.interface';
+import { Provincia } from 'src/app/models/provincia.model';
+// import { Provincia } from 'src/app/interfaces/provincia.interface';
 import { Register } from 'src/app/interfaces/register.interface';
 import { ProvinciaService } from 'src/app/servicios/provincia.service';
 import { RegisterService } from 'src/app/servicios/register.service';
+import { Localidad } from 'src/app/models/localidades.model';
+
 
 @Component({
   selector: 'app-register',
@@ -13,21 +16,16 @@ import { RegisterService } from 'src/app/servicios/register.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  provincia!: Provincia;
-  provinciaArray: any[] = [];
+  [x: string]: any;
+  
+  public provincias: Provincia[] = [];
+  public localidades: Localidad[] = [];
+  
+
   public previsualizacion: string = '';
   public archivos: any = [];
-  myForm = this.formBuilder.group({
-    foto_frontal: new FormControl('', [Validators.required]),
-    dni_delante: new FormControl('', [Validators.required]),
-    dni_detras: new FormControl('', [Validators.required]),
-    mail: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    nombre: new FormControl('', [Validators.required]),
-    apellido: new FormControl('', [Validators.required]),
-    cuil_cuit: new FormControl('', [Validators.required]),
-    domicilio: new FormControl('', [Validators.required]),
-  });
+  FormRegister : FormGroup;
+    
 
   // emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
   // mail = new FormControl('', [
@@ -49,7 +47,39 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
     private provinciaService: ProvinciaService
-  ) {}
+  ) {
+    this.FormRegister = this.formBuilder.group({
+      foto_frontal: new FormControl('', [Validators.required]),
+      dni_delante: new FormControl('', [Validators.required]),
+      dni_detras: new FormControl('', [Validators.required]),
+      mail: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      nombre: new FormControl('', [Validators.required]),
+      apellido: new FormControl('', [Validators.required]),
+      cuil_cuit: new FormControl('', [Validators.required]),
+      domicilio: new FormControl('', [Validators.required]),
+  });
+  }
+  
+  ngOnInit(): void {
+
+    
+
+
+    this.provinciaService.getProvincia().subscribe((res : Provincia[]) => {
+        this.provincias = res;
+        console.log(this.provincias);         
+    });
+   
+  }
+
+  ObtenerLocalidadPorPr(){   
+    this.localidadService.getLocalidadPorId(this.FormRegister.value.provincia).subscribe((res: Localidad[]) => {
+      this.Localidades = res;
+             }); 
+  }
+  
+  
   extraerBase64 = async ($event: any) =>
     new Promise((resolve, _reject) => {
       try {
@@ -83,20 +113,6 @@ export class RegisterComponent implements OnInit {
     this.archivos = [];
   }
 
-  ngOnInit(): void {
-    this.provinciaService.getProvincia().subscribe((data: Provincia) => {
-      {
-        console.log(data);
-        let jsonObject = {data};
-        // this.provinciaArray.forEach(
-        //   (item) => (this.provinciaArray[item.iD_provincia] = item.provincia)
-        // );
-        let json = JSON.stringify(jsonObject);
-        console.log(data.provincia);
-        console.log(json);
-      }
-    });
-  }
   // get mailField() {
   //   return this.mail;
   // }
@@ -112,18 +128,5 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-  // obtenerProvincia(event: Provincia) {
-  //   this.provinciaService.getProvincia().subscribe((data: Provincia) => {
-  //     {
-  //       console.log(data);
-  //       let jsonObject = {};
-  //       this.provinciaArray.forEach(
-  //         (data) => (this.provinciaArray[data.iD_provincia] = data.provincia)
-  //       );
-  //       let json = JSON.stringify(jsonObject);
-  //       console.log(this.provinciaArray);
-  //       console.log(json);
-  //     }
-  //   });
-  // }
+  
 }

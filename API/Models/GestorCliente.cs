@@ -93,7 +93,7 @@ namespace API.Models
 
     public List<Localidad> ObtenerLocalidadPorPr(int iD_Provincia)
     {
-      List<Localidad> listaLocalidades = new List<Localidad>();
+      var listaLocalidades = new List<Localidad>();
 
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
@@ -123,7 +123,7 @@ namespace API.Models
 
     public List<Provincia> ObtenerProvincia()
     {
-      List<Provincia> listaProvincias = new List<Provincia>();
+      var listaProvincias = new List<Provincia>();
 
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();

@@ -8,11 +8,7 @@
     routerLink=""
   ></button>
 </div>
-<form
-  [formGroup]="myForm"
-  class="container-fluid col-10 my-5 mx-auto"
-  (ngSubmit)="onEnviar(myForm.value)"
->
+<form name="FormRegister" [formGroup]="FormRegister" class="container-fluid col-10 my-5 mx-auto" (ngSubmit)="onEnviar(myForm.value)">
   <div class="form-group my-3 py-2 row">
     <div class="col-6">
       <div class="form-floating col">
@@ -149,42 +145,18 @@
 
   <div class="form-group col-md-4">
     <label class="px-1 my-2" for="inputState">Provincia</label>
-    <select
-      id="inputState"
-      class="form-control"
-      *ngFor="let data of provinciaArray"
-    >
-      <option selected>{{ data.provinciaArray }}</option>
-      <!-- <option>Buenos Aires</option>
-      <option>Catamarca</option>
-      <option>Chaco</option>
-      <option>Chubut</option>
-      <option>Córdoba</option>
-      <option>Corrientes</option>
-      <option>Entre Rios</option>
-      <option>Formosa</option>
-      <option>Jujuy</option>
-      <option>La Pampa</option>
-      <option>La Rioja</option>
-      <option>Mendoza</option>
-      <option>Misiones</option>
-      <option>Nequén</option>
-      <option>Rio Negro</option>
-      <option>Salta</option>
-      <option>San Juan</option>
-      <option>San Luis</option>
-      <option>Santa Cruz</option>
-      <option>Santa Fé</option>
-      <option>Santiago del Estero</option>
-      <option>Tierra del Fuego, Antártida e Isla del Atlántico Sur</option>
-      <option>Tucumán</option> -->
+    <select id="inputState" formControlName="provincia" class="form-control" (change)="ObtenerLocalidadPorPr()">
+      <option *ngFor="let prov of provincias" value="{{prov.ID_Provincia}}">{{prov.Provincia1}}</option>
     </select>
   </div>
 
-  <div class="row g-3 my-3">
+  <div class="form-group row g-3 my-3">
     <div class="col">
       <label for="" class="form-label">Ciudad</label>
-      <input type="text" class="form-control" aria-label="First name" />
+      <select id="inputState" formControlName="localidad" class="form-control">
+        <option *ngFor="let Loc of Localidades" value="{{Loc}}">{{Loc}}</option>
+      </select>
+      
     </div>
     <!-- <div class="col">
         <label for="" class="form-label">Codigo postal</label>
