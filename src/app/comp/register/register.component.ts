@@ -131,6 +131,26 @@ export class RegisterComponent implements OnInit {
   //   return this.password;
   // }
   onEnviar(event: Cliente) {
+    // this.registroCliente=[
+    //   {
+        
+
+    //     Cuit_Cuil : this.FormRegister.value.cuil_cuit,
+    //     Nombre : this.FormRegister.value.nombre,
+    //     Apellido : this.FormRegister.value.apellido,
+    //     Password : this.FormRegister.value.cuil_cuit,
+    //     Mail : this.FormRegister.value.cuil_cuit,
+    //     ID_Localidad : this.FormRegister.value.cuil_cuit,
+    //     Foto_Frontal : this.FormRegister.value.cuil_cuit,
+    //     DNI_delante : this.FormRegister.value.cuil_cuit,
+    //     DNI_detras : this.FormRegister.value.cuil_cuit,
+    //     Domicilio : this.FormRegister.value.cuil_cuit,
+
+    //     Cliente: this.Cuit_Cuil = this.registroCliente.Cuit_Cuil,
+    //    }
+    // ];
+
+
     this.registerService.postRegister(event).subscribe((data) => {
       {
         this.router.navigate(['/Registro']);

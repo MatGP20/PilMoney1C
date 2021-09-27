@@ -12,14 +12,7 @@
   <div class="form-group my-3 py-2 row">
     <div class="col-6">
       <div class="form-floating col">
-        <input
-          type="text"
-          class="form-control"
-          id="floatingNombre"
-          placeholder="Nombre"
-          value=""
-          required
-        />
+        <input type="text" class="form-control" id="floatingNombre" placeholder="Nombre" value="" required [(ngModel)]="registroCliente.Nombre"/>
         <label for="floatingNombre">Nombre</label>
       </div>
     </div>

@@ -17,12 +17,12 @@ namespace API.Models
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "INSERT INTO Cuenta(iD_Cuenta, cBU, cuit_Cuil, iD_Tipo_Cuenta, iD_movimiento) VALUES (@ID_Cuenta, @CBU, @Cuit_Cuil, @ID_Tipo_Cuenta, @ID_movimiento)";
+      cm.CommandText = "INSERT INTO Cuenta(iD_Cuenta, cBU, cuit_Cuil, iD_Tipo_Cuenta) VALUES (@ID_Cuenta, @CBU, @Cuit_Cuil, @ID_Tipo_Cuenta)";
       cm.Parameters.Add(new SqlParameter("@ID_Cuenta", nueva.ID_Cuenta));
       cm.Parameters.Add(new SqlParameter("@CBU", nueva.CBU));
       cm.Parameters.Add(new SqlParameter("@Cuit_Cuil", nueva.Cuit_Cuil));
       cm.Parameters.Add(new SqlParameter("@ID_Tipo_Cuenta", nueva.ID_Tipo_Cuenta));
-      cm.Parameters.Add(new SqlParameter("@ID_movimiento", nueva.ID_movimiento));
+      
       
 
       cm.ExecuteNonQuery();
@@ -48,10 +48,10 @@ namespace API.Models
         string CBU = dr.GetString(1);
         string Cuit_Cuil = dr.GetString(2);
         int ID_Tipo_Cuenta = dr.GetInt32(3);
-        int ID_movimiento = dr.GetInt32(4);
+        
 
 
-        Cuenta c = new Cuenta(ID_Cuenta, CBU, Cuit_Cuil, ID_Tipo_Cuenta, ID_movimiento);
+        Cuenta c = new Cuenta(ID_Cuenta, CBU, Cuit_Cuil, ID_Tipo_Cuenta);
         listaCuenta.Add(c);
       }
 
