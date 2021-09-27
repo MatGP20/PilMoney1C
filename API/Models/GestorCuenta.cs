@@ -32,7 +32,7 @@ namespace API.Models
 
     public List<Cuenta> ListarCuenta(int Cuil_Cuit)
     {
-      List<Cuenta> listaCuenta = new List<Cuenta>();
+      var listaCuenta = new List<Cuenta>();
 
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();

@@ -4,6 +4,12 @@
       <div>
         <form class="needs-validation" novalidate>
           <h4 class="mb-3 text-muted">INGRESAR DINERO</h4>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Seleccione el tipo de cuenta</option>
+            <option value="1">Cuenta en Pesos</option>
+            <option value="2" disabled>Cuenta en Dolares (En Construccion)</option>
+            <option value="3" disabled>Cuenta en Bitcoin (En Construccion)</option>
+          </select>
 
           <div class="d-block my-3">
             <div class="custom-control custom-radio">
@@ -91,8 +97,22 @@
               <div class="invalid-feedback">Campo obligatorio</div>
             </div>
           </div>
+          <div class="input-group-prepend">
+            <span class="input-group-text">AR$</span>
+          </div> 
+          <input
+            type="number"
+            class="form-control"
+            id="balance"
+            placeholder="12000000.00"
+          />
 
-          <button class="btn btn-dark btn-lg btn-block mt-4" type="submit" routerLink="../" [disabled]="false">
+          <button
+            class="btn btn-dark btn-lg btn-block mt-4"
+            type="submit"
+            routerLink="../"
+            [disabled]="false"
+          >
             Depositar
           </button>
         </form>

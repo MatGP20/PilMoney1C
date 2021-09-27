@@ -13,8 +13,19 @@ namespace API.Controllers
   [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
   public class MovimientosController : ApiController
     {
-
-
-
+    public List<Movimiento> Get(int id)
+    {
+      GestorMovimiento movimiento = new GestorMovimiento();
+      List<Movimiento> listMov = movimiento.ObtenerMovimientoPorCuenta(id);
+      return listMov;
     }
+
+
+    //public void Post(Cliente c)
+    //{
+    //  GestorCliente cliente = new GestorCliente();
+    //  cliente.RegistrarCliente(c);
+    //}
+
+  }
 }
