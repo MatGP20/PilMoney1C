@@ -8,7 +8,7 @@
     routerLink=""
   ></button>
 </div>
-<form name="FormRegister" [formGroup]="FormRegister" class="container-fluid col-10 my-5 mx-auto" (ngSubmit)="onEnviar(myForm.value)">
+<form name="FormRegister" [formGroup]="FormRegister" class="container-fluid col-10 my-5 mx-auto" (ngSubmit)="onEnviar(FormRegister.value)">
   <div class="form-group my-3 py-2 row">
     <div class="col-6">
       <div class="form-floating col">
@@ -48,6 +48,7 @@
           id="floatingEmail"
           placeholder="Email"
           value="ejemplo@gmail.com"
+          required
         />
         <label for="floatingEmail">Ingrese su dirección de e-mail</label>
       </div>
@@ -72,6 +73,7 @@
           id="floatingEmail"
           placeholder="Contraseña"
           value="ejemplo@gmail.com"
+          required
         />
         <label for="floatingEmail">Ingrese su contraseña</label>
       </div>
@@ -106,6 +108,7 @@
           id="floatingEmail"
           placeholder="Contraseña"
           value="ejemplo@gmail.com"
+          required
         />
         <label for="floatingEmail">Reingrese su contraseña</label>
       </div>
@@ -142,55 +145,60 @@
       <label for="floatingDni">CUIL/CUIT</label>
     </div>
   </div>
-
-  <div class="form-group col-md-4">
-    <label class="px-1 my-2" for="inputState">Provincia</label>
-    <select id="inputState" formControlName="provincia" class="form-control" (change)="ObtenerLocalidadPorPr()">
-      <option *ngFor="let prov of provincias" value="{{prov.ID_Provincia}}">{{prov.Provincia1}}</option>
+  <div class="row">
+  <div class="form-group col-10 col-md-6 my-2">
+    <label class="form-label my-2" for="inputProv">Provincia</label>
+    <select id="inputProv" class="form-control" formControlName="provincia" (change)="ObtenerLocalidadPorPr()" required>
+      <option *ngFor="let prov of provincias" value="{{prov.ID_Provincia}}" >{{prov.Provincia1}}</option>
     </select>
   </div>
 
-  <div class="form-group row g-3 my-3">
-    <div class="col">
-      <label for="" class="form-label">Ciudad</label>
-      <select id="inputState" formControlName="localidad" class="form-control">
-        <option *ngFor="let Loc of Localidades" value="{{Loc}}">{{Loc}}</option>
-      </select>
-      
-    </div>
-    <!-- <div class="col">
-        <label for="" class="form-label">Codigo postal</label>
-        <input type="text" class="form-control" aria-label="Last name" />
-      </div> -->
+  <div class="form-group col-10 col-md-6 my-2">
+      <label for="inputLocal" class="form-label my-2">Ciudad</label>
+      <select id="inputLocal" formControlName="localidad" class="form-control" required>
+        <option *ngFor="let Loc of Localidades" value="{{Loc.ID_Localidad}}">{{Loc.Localidad1}}</option>
+      </select>        
   </div>
-  <div class="button-foto">
-    <input
-      type="file"
-      name="mi-archivo"
-      id="mi-archivo"
-      formControlName="foto_frontal"
-      (change)="capturarFile($event)"
-      required
-    />
+    
   </div>
-  <label for="mi-archivo">
-    <span>Subir</span>
-  </label>
-  <div *ngIf="previsualizacion">
+
+  <div class="form-floating my-3">
+    <textarea class="form-control" placeholder="Dirección" id="direccion" required></textarea>
+    <label for="direccion">Dirección</label>
+  </div>
+  <!-- <div class="button-foto">
+    <input type="file" name="foto_frontal" id="foto_frontal" formControlName="foto_frontal" (change)="capturarFile($event)" required/>
+  </div> -->
+  <!-- <label for="foto_frontal">
+    <span>foto_frontal</span>
+  </label> -->
+  <div *ngIf="previsualizacion" class="rounded-pill">
     <img width="150px" [src]="previsualizacion" alt="" class="img-default" />
   </div>
-  <div class="button-foto">
+  <div class="input-group my-3">
+    <label class="input-group-text" for="foto_frontal">Foto frontal</label>
+    <input type="file" class="form-control"  name="foto_frontal" id="foto_frontal" formControlName="foto_frontal" (change)="capturarFile($event)" required>
+  </div>
+  <div class="input-group my-3">
+    <label class="input-group-text" for="dni_delante">Foto delantera de DNI</label>
+    <input type="file" class="form-control"  name="dni_delante" id="dni_delante" formControlName="dni_delante" (change)="capturarFile($event)" required>
+  </div>
+  <div class="input-group my-3">
+    <label class="input-group-text" for="dni_detras">Foto de reverso de DNI</label>
+    <input type="file" class="form-control"  name="dni_detras" id="dni_detras" formControlName="dni_detras" (change)="capturarFile($event)" required>
+  </div>
+  <!-- <div class="button-foto">
     <input
       type="file"
-      name="mi-archivo"
-      id="mi-archivo"
+      name="dni_delante"
+      id="dni_delante"
       formControlName="dni_delante"
       (change)="capturarFile($event)"
       required
     />
   </div>
-  <label for="mi-archivo">
-    <span>Subir</span>
+  <label for="dni_delante">
+    <span>dni_delante</span>
   </label>
   <div *ngIf="previsualizacion">
     <img width="150px" [src]="previsualizacion" alt="" class="img-default" />
@@ -198,20 +206,21 @@
   <div class="button-foto">
     <input
       type="file"
-      name="mi-archivo"
-      id="mi-archivo"
+      name="dni_detras"
+      id="dni_detras"
       formControlName="dni_detras"
       (change)="capturarFile($event)"
       required
     />
   </div>
-  <label for="mi-archivo">
-    <span>Subir</span>
+  <label for="dni_detras">
+    <span>dni_detras</span>
   </label>
   <div *ngIf="previsualizacion">
     <img width="150px" [src]="previsualizacion" alt="" class="img-default" />
-  </div>
+  </div> -->
 
+  
   <div class="form-check my-5">
     <input
       class="form-check-input"
@@ -226,7 +235,5 @@
     <div class="invalid-feedback">You must agree before submitting.</div>
   </div>
 
-  <button type="submit" class="btn btn-dark mt-2" routerLink="../Login">
-    Registrarme
-  </button>
+  <button type="submit" class="btn btn-dark mt-2">Registrarme</button>
 </form>

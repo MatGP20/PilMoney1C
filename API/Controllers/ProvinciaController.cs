@@ -14,10 +14,6 @@ namespace API.Controllers
   public class ProvinciaController : ApiController
   {
     
-      //public ProvinciaController(){}
-    
-      // GET: api/Provincia
-      
       public List<Provincia> Get()
       {
         GestorCliente provincia = new GestorCliente();

@@ -4,10 +4,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Provincia } from 'src/app/models/provincia.model';
 // import { Provincia } from 'src/app/interfaces/provincia.interface';
-import { Register } from 'src/app/interfaces/register.interface';
+// import { Register } from 'src/app/interfaces/register.interface';
 import { ProvinciaService } from 'src/app/servicios/provincia.service';
 import { RegisterService } from 'src/app/servicios/register.service';
 import { Localidad } from 'src/app/models/localidades.model';
+import { LocalidadService } from 'src/app/servicios/localidad.service';
+import { Cliente } from 'src/app/models/register.model';
 
 
 @Component({
@@ -18,9 +20,15 @@ import { Localidad } from 'src/app/models/localidades.model';
 export class RegisterComponent implements OnInit {
   [x: string]: any;
   
+  public clientes: Cliente[] = [];
+  registroCliente: Cliente = new Cliente();
+  clienteDefault: Cliente = new Cliente();
+
+
   public provincias: Provincia[] = [];
   public localidades: Localidad[] = [];
-  
+
+  selectorProvselected : Provincia = {ID_Provincia: 0, Provincia1 :""}
 
   public previsualizacion: string = '';
   public archivos: any = [];
@@ -46,14 +54,18 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
-    private provinciaService: ProvinciaService
+    private provinciaService: ProvinciaService,
+    private localidadService: LocalidadService,
   ) {
+
     this.FormRegister = this.formBuilder.group({
       foto_frontal: new FormControl('', [Validators.required]),
       dni_delante: new FormControl('', [Validators.required]),
       dni_detras: new FormControl('', [Validators.required]),
       mail: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
+      provincia: new FormControl('', [Validators.required]),
+      localidad: new FormControl('', [Validators.required]),
       nombre: new FormControl('', [Validators.required]),
       apellido: new FormControl('', [Validators.required]),
       cuil_cuit: new FormControl('', [Validators.required]),
@@ -63,9 +75,6 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit(): void {
 
-    
-
-
     this.provinciaService.getProvincia().subscribe((res : Provincia[]) => {
         this.provincias = res;
         console.log(this.provincias);         
@@ -74,6 +83,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ObtenerLocalidadPorPr(){   
+    // console.log(event);
     this.localidadService.getLocalidadPorId(this.FormRegister.value.provincia).subscribe((res: Localidad[]) => {
       this.Localidades = res;
              }); 
@@ -83,8 +93,8 @@ export class RegisterComponent implements OnInit {
   extraerBase64 = async ($event: any) =>
     new Promise((resolve, _reject) => {
       try {
-        const unsafeImg = window.URL.createObjectURL($event);
-        const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+        // const unsafeImg = window.URL.createObjectURL($event);
+        // const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
         const reader = new FileReader();
         reader.readAsDataURL($event);
         reader.onload = () => {
@@ -120,7 +130,7 @@ export class RegisterComponent implements OnInit {
   // get passwordField() {
   //   return this.password;
   // }
-  onEnviar(event: Register) {
+  onEnviar(event: Cliente) {
     this.registerService.postRegister(event).subscribe((data) => {
       {
         this.router.navigate(['/Registro']);
