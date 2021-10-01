@@ -1,171 +1,117 @@
 <div class="modal-header col-10 mx-auto">
   <h5 class="modal-title" id="exampleModalLabel">REGISTRO</h5>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="modal"
-    aria-label="Close"
-    routerLink=""
-  ></button>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" routerLink=""></button>
 </div>
-<form name="FormRegister" [formGroup]="FormRegister" class="container-fluid col-10 my-5 mx-auto" (ngSubmit)="onEnviar(FormRegister.value)">
+<form [formGroup]="formRegister" class="container-fluid col-10 my-5 mx-auto" (ngSubmit)="onEnviar()">
   <div class="form-group my-3 py-2 row">
     <div class="col-6">
       <div class="form-floating col">
-        <input type="text" class="form-control" id="floatingNombre" placeholder="Nombre" value="" required [(ngModel)]="registroCliente.Nombre"/>
+        <input type="text" class="form-control" id="floatingNombre" formControlName="nombre" placeholder="Nombre"
+          [(ngModel)]="registroCliente.Nombre" required />
         <label for="floatingNombre">Nombre</label>
       </div>
     </div>
     <div class="col-6">
       <div class="form-floating col">
-        <input
-          type="text"
-          class="form-control"
-          id="floatingApellido"
-          placeholder="Apellido"
-          value=""
-          required
-          [(ngModel)]="registroCliente.Apellido"
-        />
+        <input type="text" class="form-control" id="floatingApellido" placeholder="Apellido" formControlName="apellido"
+          [(ngModel)]="registroCliente.Apellido" required />
         <label for="floatingApellido">Apellido</label>
       </div>
     </div>
   </div>
 
   <div class="form-group my-3 py-2">
-    <div class="input-group">
+    
       <div class="form-floating col">
-        <input
-          type="email"
-          class="form-control"
-          formControlname="mail"
-          id="floatingEmail"
-          placeholder="Email"
-          value="ejemplo@gmail.com"
-          required
-          [(ngModel)]="registroCliente.Mail"
-        />
+        <input type="email" class="form-control" formControlname="emailRegistro" id="floatingEmail" placeholder="Mail"
+         required />
         <label for="floatingEmail">Ingrese su dirección de e-mail</label>
       </div>
-    </div>
-    <!-- <div
-      *ngIf="mailField.invalid && (mailField.dirty || mailField.touched)"
-      class="text-danger"
-    >
-      <small *ngIf="mailField.hasError('pattern')"> Email no valido </small>
-      <small *ngIf="passwordField.hasError('required')">
+    
+    <!-- <div *ngIf="emailRegistroField.invalid && (emailRegistroField.dirty || emailRegistroField.touched)" class="text-danger">
+      <small *ngIf="emailRegistroField.hasError('pattern')"> Email no valido </small>
+      <small *ngIf="passwordRegistroField.hasError('required')">
         Debe ingresar una dirección de e-mail
       </small>
     </div> -->
   </div>
   <div class="form-group my-3 py-2">
-    <div class="input-group">
-      <div class="form-floating col">
-        <input
-          type="password"
-          class="form-control"
-          formControlname="password"
-          id="floatingEmail"
-          placeholder="Contraseña"
-          value="ejemplo@gmail.com"
-          required
-          [(ngModel)]="registroCliente.Password"
-        />
-        <label for="floatingEmail">Ingrese su contraseña</label>
-      </div>
+    <div class="form-floating col">
+      <input type="password" class="form-control" formControlname="passwordRegistro" id="floatingPass1"
+        placeholder="Contraseña" required />
+      <label for="floatingEmail">Ingrese su contraseña</label>
     </div>
-    <!-- <div
-      class="p-3"
-      *ngIf="
-        passwordField.invalid && (passwordField.dirty || passwordField.touched)
-      "
-      class="text-danger"
-    >
-      <small *ngIf="passwordField.hasError('pattern')">
+    <!-- <div class="p-3" *ngIf="passwordRegistroField.invalid && (passwordRegistroField.dirty || passwordRegistroField.touched)" class="text-danger">
+      <small *ngIf="passwordRegistroField.hasError('pattern')">
         La clave debe contener al menos una letra Mayuscula, una Minuscula y un
         simbolo.
       </small>
-      <small *ngIf="passwordField.hasError('minlength')">
+      <small *ngIf="passwordRegistroField.hasError('minlength')">
         El minimo de digitos requerido es 8.
       </small>
-      <small *ngIf="passwordField.hasError('required')">
+      <small *ngIf="passwordRegistroField.hasError('required')">
         La contraseña es requerida.
       </small>
     </div> -->
   </div>
 
   <div class="form-group my-3 py-2">
-    <div class="input-group">
+    
       <div class="form-floating col">
-        <input
-          type="password"
-          class="form-control"
-          formControlname="password"
-          id="floatingEmail"
-          placeholder="Contraseña"
-          value="ejemplo@gmail.com"
-          required
-        />
+        <input type="password" class="form-control" formControlname="passwordRegistro" id="floatingPass2"
+          placeholder="Contraseña" required />
         <label for="floatingEmail">Reingrese su contraseña</label>
       </div>
-    </div>
-    <!-- <div
-      class="p-3"
-      *ngIf="
-        passwordField.invalid && (passwordField.dirty || passwordField.touched)
-      "
-      class="text-danger"
-    >
-      <small *ngIf="passwordField.hasError('pattern')">
+    
+    <!-- <div class="p-3" *ngIf="passwordRegistroField.invalid && (passwordRegistroField.dirty || passwordRegistroField.touched)" class="text-danger">
+      <small *ngIf="passwordRegistroField.hasError('pattern')">
         La clave debe contener al menos una letra Mayuscula, una Minuscula y un
         simbolo.
       </small>
-      <small *ngIf="passwordField.hasError('minlength')">
+      <small *ngIf="passwordRegistroField.hasError('minlength')">
         El minimo de digitos requerido es 8.
       </small>
-      <small *ngIf="passwordField.hasError('required')">
+      <small *ngIf="passwordRegistroField.hasError('required')">
         La contraseña es requerida.
       </small>
     </div> -->
   </div>
   <div class="col">
     <div class="form-floating col">
-      <input
-        type="text"
-        class="form-control"
-        id="floatingDni"
-        placeholder="DNI"
-        value=""
-        required
-        [(ngModel)]="registroCliente.Cuit_Cuil"
-      />
+      <input type="text" class="form-control" id="floatingDni" placeholder="Cuit_Cuil" value="" required
+        formControlName="cuil_cuit" [(ngModel)]="registroCliente.Cuit_Cuil" />
+        <!--  -->
       <label for="floatingDni">CUIL/CUIT</label>
     </div>
   </div>
   <div class="row">
-  <div class="form-group col-10 col-md-6 my-2">
-    <label class="form-label my-2" for="inputProv">Provincia</label>
-    <select id="inputProv" class="form-control" formControlName="provincia" (change)="ObtenerLocalidadPorPr()" required>
-      <option *ngFor="let prov of provincias" value="{{prov.ID_Provincia}}" >{{prov.Provincia1}}</option>
-    </select>
-  </div>
+    <div class="form-group col-10 col-md-6 my-2">
+      <label class="form-label my-2" for="inputProv">Provincia</label>
+      <select id="inputProv" class="form-control" formControlName="provincia" (change)="ObtenerLocalidadPorPr()"
+        required>
+        <option *ngFor="let prov of provincias" value="{{prov.ID_Provincia}}">{{prov.Provincia1}}</option>
+      </select>
+    </div>
 
-  <div class="form-group col-10 col-md-6 my-2">
+    <div class="form-group col-10 col-md-6 my-2">
       <label for="inputLocal" class="form-label my-2">Ciudad</label>
-      <select id="inputLocal" formControlName="localidad" class="form-control" required [(ngModel)]="registroCliente.ID_Localidad.ID_Localidad">
-        <option *ngFor="let Loc of Localidades" value="{{Loc.ID_Localidad}}">{{Loc.Localidad1}}</option>
-      </select>        
-  </div>
-    
+      <select id="inputLocal" formControlName="localidad" class="form-control" [(ngModel)]="registroCliente.ID_Localidad"
+         required>
+         <!--  -->
+        <option *ngFor="let Loc of localidades" value="{{Loc.ID_Localidad}}">{{Loc.Localidad1}}</option>
+      </select>
+    </div>
+
   </div>
 
   <!-- <div class="form-floating my-3">
     <text class="form-control" placeholder="Dirección" id="direccion" required></text>
     <label for="direccion">Dirección</label>
   </div> -->
-  <div class="form-floating my-3">    
-    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="direccion" id="direccion" required [(ngModel)]="registroCliente.Domicilio">
-    <label class="input-group-text" for="direccion">Dirección</label>
+  <div class="form-floating my-3">
+    <input type="text" class="form-control" aria-label="Sizing example input" formControlName="domicilio"
+      aria-describedby="direccion" id="direccion" placeholder="Dirección" required>
+    <label class="" for="direccion">Dirección</label>
   </div>
   <!-- <div class="button-foto">
     <input type="file" name="foto_frontal" id="foto_frontal" formControlName="foto_frontal" (change)="capturarFile($event)" required/>
@@ -178,15 +124,18 @@
   </div>
   <div class="input-group my-3">
     <label class="input-group-text" for="foto_frontal">Foto frontal</label>
-    <input type="file" class="form-control"  name="foto_frontal" id="foto_frontal" formControlName="foto_frontal" (change)="capturarFile($event)" required [(ngModel)]="registroCliente.Foto_Frontal">
+    <input type="file" class="form-control" name="foto_frontal" id="foto_frontal" formControlName="foto_frontal"
+      (change)="capturarFile($event)" required>
   </div>
   <div class="input-group my-3">
     <label class="input-group-text" for="dni_delante">Foto delantera de DNI</label>
-    <input type="file" class="form-control"  name="dni_delante" id="dni_delante" formControlName="dni_delante" (change)="capturarFile($event)" required [(ngModel)]="registroCliente.DNI_delante">
+    <input type="file" class="form-control" name="dni_delante" id="dni_delante" formControlName="dni_delante"
+      (change)="capturarFile($event)" required>
   </div>
   <div class="input-group my-3">
     <label class="input-group-text" for="dni_detras">Foto de reverso de DNI</label>
-    <input type="file" class="form-control"  name="dni_detras" id="dni_detras" formControlName="dni_detras" (change)="capturarFile($event)" required [(ngModel)]="registroCliente.DNI_detras">
+    <input type="file" class="form-control" name="dni_detras" id="dni_detras" formControlName="dni_detras"
+      (change)="capturarFile($event)" required>
   </div>
   <!-- <div class="button-foto">
     <input
@@ -221,15 +170,9 @@
     <img width="150px" [src]="previsualizacion" alt="" class="img-default" />
   </div> -->
 
-  
+
   <div class="form-check my-5">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value=""
-      id="invalidCheck"
-      required
-    />
+    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required />
     <label class="form-check-label" for="invalidCheck">
       Acepto los terminos y condiciones.
     </label>

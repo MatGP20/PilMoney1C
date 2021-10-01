@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
+// import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Provincia } from 'src/app/models/provincia.model';
 // import { Provincia } from 'src/app/interfaces/provincia.interface';
@@ -18,8 +18,11 @@ import { Cliente } from 'src/app/models/register.model';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  [x: string]: any;
+  // [x: string]: any;
   
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  passwordPattern ='(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}';
+
   public clientes: Cliente[] = [];
   registroCliente: Cliente = new Cliente();
   clienteDefault: Cliente = new Cliente();
@@ -32,18 +35,31 @@ export class RegisterComponent implements OnInit {
 
   public previsualizacion: string = '';
   public archivos: any = [];
-  FormRegister : FormGroup;
-    
+  formRegister: FormGroup = this.formBuilder.group({
+    foto_frontal: new FormControl('', [Validators.required]),
+    dni_delante: new FormControl('', [Validators.required]),
+    dni_detras: new FormControl('', [Validators.required]),
+    emailRegistro: new FormControl('', [Validators.pattern(this.emailPattern),Validators.required]),
+    passwordRegistro: new FormControl('', [Validators.pattern(this.passwordPattern),Validators.minLength(8),Validators.required]),
+    provincia: new FormControl('', [Validators.required]),
+    localidad: new FormControl('', [Validators.required]),
+    nombre: new FormControl('', [Validators.required]),
+    apellido: new FormControl('', [Validators.required]),
+    cuil_cuit: new FormControl('', [Validators.required]),
+    domicilio: new FormControl('', [Validators.required]),
+});
 
-  // emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
-  // mail = new FormControl('', [
+    emailRegistro: any;
+    passwordRegistro: any;
+
+  
+  // mailRegistro = new FormControl('', [
   //   Validators.required,
   //   Validators.pattern(this.emailPattern),
   // ]);
 
-  // passwordPattern =
-  //   '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}';
-  // password = new FormControl('', [
+  
+  // passwordRegistro = new FormControl('', [
   //   Validators.required,
   //   Validators.pattern(this.passwordPattern),
   //   Validators.minLength(8),
@@ -53,24 +69,13 @@ export class RegisterComponent implements OnInit {
     private registerService: RegisterService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private sanitizer: DomSanitizer,
+    // private sanitizer: DomSanitizer,
     private provinciaService: ProvinciaService,
     private localidadService: LocalidadService,
+    
   ) {
-
-    this.FormRegister = this.formBuilder.group({
-      foto_frontal: new FormControl('', [Validators.required]),
-      dni_delante: new FormControl('', [Validators.required]),
-      dni_detras: new FormControl('', [Validators.required]),
-      mail: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      provincia: new FormControl('', [Validators.required]),
-      localidad: new FormControl('', [Validators.required]),
-      nombre: new FormControl('', [Validators.required]),
-      apellido: new FormControl('', [Validators.required]),
-      cuil_cuit: new FormControl('', [Validators.required]),
-      domicilio: new FormControl('', [Validators.required]),
-  });
+    
+  
   }
   
   ngOnInit(): void {
@@ -78,14 +83,16 @@ export class RegisterComponent implements OnInit {
     this.provinciaService.getProvincia().subscribe((res : Provincia[]) => {
         this.provincias = res;
         console.log(this.provincias);         
-    });
+    });     
    
   }
 
   ObtenerLocalidadPorPr(){   
-    // console.log(event);
-    this.localidadService.getLocalidadPorId(this.FormRegister.value.provincia).subscribe((res: Localidad[]) => {
-      this.Localidades = res;
+    console.log(this.formRegister.value.provincia);
+    this.localidadService.getLocalidadPorId(this.formRegister.value.provincia).subscribe((res: Localidad[]) => {
+      console.log(res); 
+      this.localidades = res;
+      console.log(this.localidades); 
              }); 
   }
   
@@ -130,33 +137,46 @@ export class RegisterComponent implements OnInit {
   // get passwordField() {
   //   return this.password;
   // }
-  onEnviar(event: Cliente) {
-    // this.registroCliente=[
-    //   {
-        
 
-    //     Cuit_Cuil : this.FormRegister.value.cuil_cuit,
-    //     Nombre : this.FormRegister.value.nombre,
-    //     Apellido : this.FormRegister.value.apellido,
-    //     Password : this.FormRegister.value.cuil_cuit,
-    //     Mail : this.FormRegister.value.cuil_cuit,
-    //     ID_Localidad : this.FormRegister.value.cuil_cuit,
-    //     Foto_Frontal : this.FormRegister.value.cuil_cuit,
-    //     DNI_delante : this.FormRegister.value.cuil_cuit,
-    //     DNI_detras : this.FormRegister.value.cuil_cuit,
-    //     Domicilio : this.FormRegister.value.cuil_cuit,
+  // Cuit_Cuil, Nombre, Apellido, Password, Mail, ID_Localidad, Foto_Frontal, DNI_delante, DNI_detras, Domicilio
+  // Cliente:Cliente
 
-    //     Cliente: this.Cuit_Cuil = this.registroCliente.Cuit_Cuil,
-    //    }
-    // ];
-
-
-    this.registerService.postRegister(event).subscribe((data) => {
-      {
-        this.router.navigate(['/Registro']);
-        console.log(data);
-      }
-    });
+  get emailRegistroValue() {
+    return this.formRegister.get('email');
   }
+
+  get passwordRegistroField() {
+    return this.passwordRegistro;
+  }
+
+  onEnviar() {
+    console.log(this.registroCliente);
+
+                
+    // this.registroCliente.Cuit_Cuil = this.formRegister.controls.cuil_cuit.value;
+    // this.registroCliente.Nombre = this.formRegister.value.nombre;
+    // this.registroCliente.Apellido = this.formRegister.value.apellido;
+    this.registroCliente.Password = this.passwordRegistroField;
+    this.registroCliente.Mail = this.emailRegistroValue?.value;
+    // this.registroCliente.ID_Localidad = this.formRegister.value.localidad.ID_Localidad;
+    this.registroCliente.Foto_Frontal = this.formRegister.value.foto_frontal;
+    this.registroCliente.DNI_delante = this.formRegister.value.dni_delante;
+    this.registroCliente.DNI_detras = this.formRegister.value.dni_detras;
+    this.registroCliente.Domicilio = this.formRegister.value.domicilio;        
+    
+    console.log(this.registroCliente);
+    
+
+    
+
+    // this.registerService.postRegister(this.registroCliente).subscribe(data => {
+    //   {
+    //     this.router.navigate(['/Registro']);
+    //     console.log(data);
+    //   }
+    // });
+  }
+
+ 
   
 }

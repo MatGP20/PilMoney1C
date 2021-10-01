@@ -17,8 +17,8 @@ namespace API.Controllers
       public List<Provincia> Get()
       {
         GestorCliente provincia = new GestorCliente();
-        List<Provincia> listProv = provincia.ObtenerProvincia();
-        return listProv;  
+        //List<Provincia> listProv = provincia.ObtenerProvincia();
+        return provincia.ObtenerProvincia();  
       }
 
     

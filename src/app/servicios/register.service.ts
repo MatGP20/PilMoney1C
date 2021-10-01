@@ -10,8 +10,9 @@ export class RegisterService {
   urlRegister: string = 'https://localhost:44345/api/cliente';
 
   constructor(private http: HttpClient) {}
-  postRegister(form: Cliente){
-    return this.http.post(this.urlRegister,form)
+
+  postRegister(cliente: Cliente){
+    return this.http.post(this.urlRegister,cliente)
 }
 }
 

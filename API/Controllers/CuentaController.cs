@@ -21,11 +21,11 @@ namespace API.Controllers
         return listaCuenta;
       }
 
-      //public void Post(Cliente c)
-      //{
-      //  GestorCliente cliente = new GestorCliente();
-      //  cliente.RegistrarCliente(c);
-      //}
+      public void Post(Cuenta cu)
+      {
+        GestorCuenta cuentaNueva = new GestorCuenta();
+        cuentaNueva.CrearCuenta(cu);
+      }
 
-    }
+  }
 }
