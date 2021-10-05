@@ -2,7 +2,7 @@ import { Localidad } from './localidades.model';
 
 export class Cliente {
 
-    Cuit_Cuil! : string;
+    Cuit_Cuil! : number;
     Nombre! : string;
     Apellido! : string;
     Password! : string;

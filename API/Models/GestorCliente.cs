@@ -13,25 +13,57 @@ namespace API.Models
 
     public void RegistrarCliente(Cliente nuevo)
     {
+      Cliente clienteBuscado = new Cliente();
+
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "INSERT INTO Cliente (cuit_Cuil, nombre, apellido, password, mail, iD_Localidad, foto_Frontal, dNI_delante, dNI_detras, domicilio) VALUES (@Cuit_Cuil, @Nombre, @Apellido, @Password, @Mail, @ID_Localidad, @Foto_Frontal, @DNI_delante, @DNI_detras, @Domicilio)";
+      cm.CommandText = "SELECT Cuit_Cuil FROM Cliente WHERE cuit_Cuil = @Cuit_Cuil";
       cm.Parameters.Add(new SqlParameter("@Cuit_Cuil", nuevo.Cuit_Cuil));
-      cm.Parameters.Add(new SqlParameter("@Nombre", nuevo.Nombre));
-      cm.Parameters.Add(new SqlParameter("@Apellido", nuevo.Apellido));
-      cm.Parameters.Add(new SqlParameter("@Password", nuevo.Password));
-      cm.Parameters.Add(new SqlParameter("@Mail", nuevo.Mail));
-      cm.Parameters.Add(new SqlParameter("@ID_Localidad", nuevo.ID_Localidad));
-      cm.Parameters.Add(new SqlParameter("@Foto_Frontal", nuevo.Foto_Frontal)); 
-      cm.Parameters.Add(new SqlParameter("@DNI_delante", nuevo.DNI_delante));
-      cm.Parameters.Add(new SqlParameter("@DNI_detras", nuevo.DNI_detras));
-      cm.Parameters.Add(new SqlParameter("@Domicilio", nuevo.Domicilio));
 
-      cm.ExecuteNonQuery();
+      SqlDataReader dr = cm.ExecuteReader();
+
+      if (dr.Read())
+      {
+        int Cuil_Cuit = dr.GetInt32(0);
+        
+        Cliente cliente = new Cliente(Cuil_Cuit);
+        clienteBuscado = cliente;
+      }
+
+      dr.Close();
+      cx.Close();
 
       cx.Close();
+
+      if (clienteBuscado.Cuit_Cuil == 0) {
+        
+        cx.Open();
+        cm = cx.CreateCommand();
+        cm.CommandText = "INSERT INTO Cliente (cuit_Cuil, nombre, apellido, password, mail, iD_Localidad, foto_Frontal, dNI_delante, dNI_detras, domicilio) VALUES (@Cuit_Cuil, @Nombre, @Apellido, @Password, @Mail, @ID_Localidad, @Foto_Frontal, @DNI_delante, @DNI_detras, @Domicilio)";
+        cm.Parameters.Add(new SqlParameter("@Cuit_Cuil", nuevo.Cuit_Cuil));
+        cm.Parameters.Add(new SqlParameter("@Nombre", nuevo.Nombre));
+        cm.Parameters.Add(new SqlParameter("@Apellido", nuevo.Apellido));
+        cm.Parameters.Add(new SqlParameter("@Password", nuevo.Password));
+        cm.Parameters.Add(new SqlParameter("@Mail", nuevo.Mail));
+        cm.Parameters.Add(new SqlParameter("@ID_Localidad", nuevo.ID_Localidad));
+        cm.Parameters.Add(new SqlParameter("@Foto_Frontal", nuevo.Foto_Frontal));
+        cm.Parameters.Add(new SqlParameter("@DNI_delante", nuevo.DNI_delante));
+        cm.Parameters.Add(new SqlParameter("@DNI_detras", nuevo.DNI_detras));
+        cm.Parameters.Add(new SqlParameter("@Domicilio", nuevo.Domicilio));
+
+        cm.ExecuteNonQuery();
+
+        cx.Close();
+
+
+      }
+      else
+      {
+        //Cliente registrado
+      }
+
     }
 
     public Cliente BuscarCliente(string cuit_Cuil)
@@ -49,7 +81,7 @@ namespace API.Models
 
       if(dr.Read())
       {
-        string Cuil_Cuit = dr.GetString(0).Trim();
+        int Cuil_Cuit = dr.GetInt32(0);
         string Nombre = dr.GetString(1).Trim();
         string Apellido = dr.GetString(2).Trim();
         string Password = dr.GetString(3).Trim();
