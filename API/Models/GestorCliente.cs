@@ -11,9 +11,11 @@ namespace API.Models
   {
     string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
 
-    public void RegistrarCliente(Cliente nuevo)
+    public int RegistrarCliente(Cliente nuevo)
     {
       Cliente clienteBuscado = new Cliente();
+
+      int mensaje = 0;
 
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
@@ -57,11 +59,17 @@ namespace API.Models
 
         cx.Close();
 
+        //mensaje = 0;
+
+        return mensaje;
 
       }
       else
       {
-        //Cliente registrado
+
+        mensaje = 1;
+
+        return mensaje;
       }
 
     }

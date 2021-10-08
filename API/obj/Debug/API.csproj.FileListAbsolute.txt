@@ -84,7 +84,6 @@ E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\System.Web.WebPages.Deployment.
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\System.Web.WebPages.Razor.xml
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Antlr3.Runtime.pdb
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\obj\Debug\API.csproj.CopyComplete
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\obj\Debug\API.dll
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\obj\Debug\API.pdb
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.AspNetCore.Authentication.Abstractions.dll

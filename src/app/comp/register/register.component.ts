@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
     dni_detras = new FormControl('', [Validators.required]);
     emailRegistro = new FormControl('', [Validators.pattern(this.emailPatternReg),Validators.required]);
     passwordRegistro= new FormControl('', [Validators.pattern(this.passwordPatternReg),Validators.minLength(8),Validators.required]);
+    passwordRegistro2= new FormControl('', [Validators.required]);
     provincia= new FormControl('', [Validators.required]);
     localidad=new FormControl('', [Validators.required]);
     nombre= new FormControl('', [Validators.required]);
@@ -137,6 +138,10 @@ export class RegisterComponent implements OnInit {
     return this.passwordRegistro;
   }
 
+  get passwordRegistroField2() {
+    return this.passwordRegistro2;
+  }
+
   onEnviar() {
     // console.log(this.registroCliente);
     
@@ -148,12 +153,12 @@ export class RegisterComponent implements OnInit {
     
     console.log(this.registroCliente);   
 
-    this.registerService.postRegister(this.registroCliente).subscribe(data => {
-      {
-        this.router.navigate(['/Registro']);
-        console.log(data);
-      }
-    });
+    // this.registerService.postRegister(this.registroCliente).subscribe(data => {
+    //   {
+    //     this.router.navigate(['/Registro']);
+    //     console.log(data);
+    //   }
+    // });
   }
 
  
