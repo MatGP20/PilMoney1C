@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
     //recibe las provincias al iniciar la página 
     this.provinciaService.getProvincia().subscribe((res : Provincia[]) => {
         this.provincias = res;
-        console.log(this.provincias);         
+        // console.log(this.provincias);         
     });     
    
   }
@@ -74,9 +74,9 @@ export class RegisterComponent implements OnInit {
   ObtenerLocalidadPorPr(){   
     console.log(this.provincia.value);
     this.localidadService.getLocalidadPorId(this.provincia.value).subscribe((res: Localidad[]) => {
-      console.log(res); 
+      // console.log(res); 
       this.localidades = res;
-      console.log(this.localidades); 
+      // console.log(this.localidades); 
              }); 
   }
   
@@ -106,9 +106,10 @@ export class RegisterComponent implements OnInit {
     const archivoCapturado = event.target.files[0];
     this.extraerBase64(archivoCapturado).then((imagen: any) => {
       this.previsualizacion = imagen.base;
-      console.log(imagen.base);
+      // console.log(imagen.base);
+      this.archivos.push(imagen.base);
     });
-    this.archivos.push(archivoCapturado);
+    // this.archivos.push(archivoCapturado);
   }
 
   clearImage(): any {
@@ -141,23 +142,35 @@ export class RegisterComponent implements OnInit {
   get passwordRegistroField2() {
     return this.passwordRegistro2;
   }
+  
 
-  onEnviar() {
+  onEnviar(cliente : Cliente) {
     // console.log(this.registroCliente);
-    
+    this.registroCliente.Foto_Frontal = this.foto_frontal.value;
+  
+    this.registroCliente.DNI_delante = this.dni_delante.value;
+  
+    this.registroCliente.DNI_detras =  this.dni_detras.value; 
     // this.registroCliente.Password = this.passwordRegistro.value;
     // this.registroCliente.Mail = this.emailRegistro.value;
-    this.registroCliente.Foto_Frontal = this.archivos[0];
-    this.registroCliente.DNI_delante = this.archivos[1];
-    this.registroCliente.DNI_detras =  this.archivos[2];            
+    // this.registroCliente.Foto_Frontal = this.archivos[0];
+    // this.registroCliente.DNI_delante = this.archivos[1];
+    // this.registroCliente.DNI_detras =  this.archivos[2];
+               
     
-    console.log(this.registroCliente);   
+    // console.log(this.registroCliente);   
 
-    this.registerService.postRegister(this.registroCliente).subscribe(data => {
-      {
-        this.router.navigate(['/Registro']);
-        console.log(data);
-      }
+    this.registerService.postRegister(cliente).subscribe(data => {
+      // console.log(data);
+        if(data===1){
+          alert("Usuario ya registrado")
+        }
+        else if (data===0){
+          alert("Usuario registrado con exito")
+        }
+        // this.router.navigate(['login']);
+
+      
     });
   }
 

@@ -11,11 +11,11 @@ namespace API.Models
   {
     string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
 
-    public void RegistrarCliente(Cliente nuevo)
+    public int RegistrarCliente(Cliente nuevo)
     {
       Cliente clienteBuscado = new Cliente();
 
-      //int mensaje = 0;
+      int mensaje;
 
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
@@ -28,8 +28,8 @@ namespace API.Models
 
       if (dr.Read())
       {
-        int Cuil_Cuit = dr.GetInt32(0);
-        
+        Int64 Cuil_Cuit = dr.GetInt64(0);
+
         Cliente cliente = new Cliente(Cuil_Cuit);
         clienteBuscado = cliente;
       }
@@ -59,22 +59,22 @@ namespace API.Models
 
         cx.Close();
 
-        //mensaje = 0;
+        mensaje = 0;
 
-        //return mensaje;
+        return mensaje;
 
       }
       else
       {
 
-        //mensaje = 1;
+        mensaje = 1;
 
-        //return mensaje;
+        return mensaje;
       }
 
     }
 
-    public Cliente BuscarCliente(int cuit_Cuil)
+    public Cliente BuscarCliente(Int64 cuit_Cuil)
     {
       Cliente clienteBuscado = new Cliente();
 
@@ -89,8 +89,7 @@ namespace API.Models
 
       if(dr.Read())
       {
-
-        int Cuil_Cuit = Convert.ToInt32(dr.GetInt64(0));
+        Int64 Cuil_Cuit = dr.GetInt64(0);
         string Nombre = dr.GetString(1).Trim();
         string Apellido = dr.GetString(2).Trim();
         string Password = dr.GetString(3).Trim();

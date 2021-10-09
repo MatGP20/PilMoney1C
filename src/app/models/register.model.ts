@@ -11,6 +11,6 @@ export class Cliente {
     Foto_Frontal! : string;
     DNI_delante! : string;
     DNI_detras! : string;
-    Domicilio! : string;
+    Domicilio! : string;   
 
 }

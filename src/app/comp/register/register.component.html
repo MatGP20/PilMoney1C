@@ -2,7 +2,7 @@
   <h5 class="modal-title" id="exampleModalLabel">REGISTRO</h5>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" routerLink=""></button>
 </div>
-<form class="container-fluid col-10 my-5 mx-auto" (ngSubmit)="onEnviar()">
+<form class="container-fluid col-10 my-5 mx-auto" (ngSubmit)="onEnviar(registroCliente)">
   <div class="form-group my-3 py-2 row">
     <div class="col-6">
       <div class="form-floating col">
@@ -96,17 +96,17 @@
   </div>
   <div class="input-group my-3">
     <label class="input-group-text" for="foto_frontal">Foto frontal</label>
-    <input type="file" class="form-control" name="foto_frontal" id="foto_frontal" (change)="transFFrontal($event)"
+    <input type="file" class="form-control" name="foto_frontal" id="foto_frontal" [formControl]="foto_frontal" (change)="transFFrontal($event)"
       required>
   </div>
   <div class="input-group my-3">
     <label class="input-group-text" for="dni_delante">Foto delantera de DNI</label>
-    <input type="file" class="form-control" name="dni_delante" id="dni_delante" (change)="transDDelante($event)"
+    <input type="file" class="form-control" name="dni_delante" id="dni_delante" [formControl]="dni_delante" (change)="transDDelante($event)"
       required>
   </div>
   <div class="input-group my-3">
     <label class="input-group-text" for="dni_detras">Foto de reverso de DNI</label>
-    <input type="file" class="form-control" name="dni_detras" id="dni_detras" (change)="transDDetras($event)" required>
+    <input type="file" class="form-control" name="dni_detras" id="dni_detras" [formControl]="dni_detras" (change)="transDDetras($event)" required>
   </div>
   <!--  formControlName="domicilio" formControlName="foto_frontal"  formControlName="dni_delante" formControlName="dni_detras" -->
   
