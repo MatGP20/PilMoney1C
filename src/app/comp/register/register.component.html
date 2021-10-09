@@ -53,7 +53,7 @@
         name="passwordReg2" minlength="10" required />
       <label for="floatingPassword2">Repetir Contraseña</label>
     </div>
-    <div *ngIf="passwordRegistroField2?.invalid && (passwordRegistroField2.dirty || passwordRegistroField2.touched) || (passwordRegistroField2.value != passwordRegistroField.value)"
+    <div *ngIf="passwordRegistroField2?.invalid && (passwordRegistroField2.dirty || passwordRegistroField2.touched) && (passwordRegistroField2.value != passwordRegistroField.value)"
       class="text-danger fw-light">
       <small *ngIf="passwordRegistroField2.hasError('')">La clave debe ser identica.</small>      
       <small *ngIf="passwordRegistroField2.hasError('required')">La contraseña es requerida.</small>

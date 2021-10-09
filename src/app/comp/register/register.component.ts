@@ -106,7 +106,7 @@ export class RegisterComponent implements OnInit {
     const archivoCapturado = event.target.files[0];
     this.extraerBase64(archivoCapturado).then((imagen: any) => {
       this.previsualizacion = imagen.base;
-      // console.log(imagen.base);
+      console.log(imagen.base);
     });
     this.archivos.push(archivoCapturado);
   }
@@ -153,12 +153,12 @@ export class RegisterComponent implements OnInit {
     
     console.log(this.registroCliente);   
 
-    // this.registerService.postRegister(this.registroCliente).subscribe(data => {
-    //   {
-    //     this.router.navigate(['/Registro']);
-    //     console.log(data);
-    //   }
-    // });
+    this.registerService.postRegister(this.registroCliente).subscribe(data => {
+      {
+        this.router.navigate(['/Registro']);
+        console.log(data);
+      }
+    });
   }
 
  

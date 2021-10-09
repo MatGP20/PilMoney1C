@@ -327,3 +327,11 @@ C:\Users\pabloaojeda\Desktop\PilMoney1C\API\obj\Debug\API.csproj.CoreCompileInpu
 C:\Users\pabloaojeda\Desktop\PilMoney1C\API\obj\Debug\API.csproj.CopyComplete
 C:\Users\pabloaojeda\Desktop\PilMoney1C\API\obj\Debug\API.dll
 C:\Users\pabloaojeda\Desktop\PilMoney1C\API\obj\Debug\API.pdb
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.Logging.dll
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.Tokens.dll
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\System.IdentityModel.Tokens.Jwt.dll
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.Logging.xml
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.Tokens.xml
+E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\System.IdentityModel.Tokens.Jwt.xml

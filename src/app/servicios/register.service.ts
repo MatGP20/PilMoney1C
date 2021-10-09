@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class RegisterService {
-  urlRegister: string = 'https://localhost:44345/api/cliente';
+  urlRegister: string = 'https://localhost:44345/api/Cliente';
 
   constructor(private http: HttpClient) {}
 

@@ -15,16 +15,26 @@ namespace API.Controllers
     {
 
     // GET: api/Cuenta/5
-    public Cliente Get(string id)
+    public Cliente Get(double id)
     {
       GestorCliente cliente = new GestorCliente();
       return cliente.BuscarCliente(id);
 
     }
-    public void Post(Cliente c)
+    public HttpResponseMessage Post(Cliente c)
     {
-      GestorCliente cliente = new GestorCliente();
-       cliente.RegistrarCliente(c);
+      if (ModelState.IsValid)
+      {
+        GestorCliente cliente = new GestorCliente();
+        cliente.RegistrarCliente(c);
+        return new HttpResponseMessage(HttpStatusCode.OK);
+      }
+
+      else
+      {
+        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+      }
+      
     }
 
   }
