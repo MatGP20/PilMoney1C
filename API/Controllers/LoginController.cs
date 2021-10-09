@@ -6,11 +6,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
   [AllowAnonymous]
   [RoutePrefix("api/login")]
+  [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
   public class LoginController : ApiController
   {
     [HttpGet]
@@ -33,7 +35,7 @@ namespace API.Controllers
     [Route("authenticate")]
     public IHttpActionResult Authenticate(LoginRequest login)
     {
-      if (login.Mail == null )
+      if (login == null)
         throw new HttpResponseException(HttpStatusCode.BadRequest);
 
       //TODO: Validate credentials Correctly, this code is only for demo !!
@@ -42,6 +44,7 @@ namespace API.Controllers
       if (isCredentialValid)
       {
         var token = TokenGenerator.GenerateTokenJwt(login.Mail);
+
         return Ok(token);
       }
       else

@@ -11,6 +11,10 @@ import { CompModule } from './comp/comp.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from '../app/servicios/Auth/interceptor';
+import { ErrorInterceptor } from '../app/servicios/Auth/error.interceptor';
+import { AuthService } from './servicios/Auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +30,13 @@ import { FormsModule } from '@angular/forms';
     CompModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -146,13 +146,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onEnviar() {
-    // console.log(this.registroCliente);
-
-    // this.registroCliente.Password = this.passwordRegistro.value;
-    // this.registroCliente.Mail = this.emailRegistro.value;
-    // this.registroCliente.Foto_Frontal = this.archivos[0];
-    // this.registroCliente.DNI_delante = this.archivos[1];
-    // this.registroCliente.DNI_detras =  this.archivos[2];
+    
     this.registroCliente.Foto_Frontal = this.foto_frontal.value;
     this.registroCliente.DNI_delante = this.dni_delante.value;
     this.registroCliente.DNI_detras = this.dni_detras.value;

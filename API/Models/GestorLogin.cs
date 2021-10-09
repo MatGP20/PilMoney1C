@@ -21,13 +21,9 @@ namespace API.Models
         cx.Open();
 
         SqlCommand cm = cx.CreateCommand();
-        cm.CommandText = "SELECT Mail FROM Cliente WHERE Mail = @Mail";
+        cm.CommandText = "SELECT Mail,Password FROM Cliente WHERE mail = @Mail AND password=@Password";
         cm.Parameters.Add(new SqlParameter("@Mail", cLoginRequest.Mail));
-       // cm.Parameters.Add(new SqlParameter("@Password", cLoginRequest.Password));
-
-
-
-
+        cm.Parameters.Add(new SqlParameter("@Password", cLoginRequest.Password));
 
         SqlDataReader reader = cm.ExecuteReader();
 

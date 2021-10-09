@@ -9,7 +9,7 @@ namespace API.Models
 {
   public class GestorCliente
   {
-    string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
+    readonly string conection = ConfigurationManager.ConnectionStrings["PilWalletEntities"].ToString();
 
     public void RegistrarCliente(Cliente nuevo)
     {

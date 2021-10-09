@@ -1,6 +1,12 @@
 <div class="modal-header col-12 col-sm-6 mx-auto">
   <h5 class="modal-title" id="exampleModalLabel">INICIAR SESION</h5>
-  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" routerLink=""></button>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+    routerLink=""
+  ></button>
 </div>
 <div class="modal-body col-12 col-sm-6 mx-auto">
   <form>
@@ -8,12 +14,21 @@
     <div class="form-group my-3 py-2">
       <div class="input-group">
         <div class="form-floating col">
-          <input type="email" class="form-control" [formControl]="mail" id="floatingEmail" placeholder="Email"
-            value="ejemplo@gmail.com" />
+          <input
+            type="email"
+            class="form-control"
+            [formControl]="mail"
+            id="floatingEmail"
+            placeholder="Email"
+            value="ejemplo@gmail.com"
+          />
           <label for="floatingEmail">Ingrese su dirección de e-mail</label>
         </div>
       </div>
-      <div *ngIf="mailField.invalid && (mailField.dirty || mailField.touched)" class="text-danger">
+      <div
+        *ngIf="mailField.invalid && (mailField.dirty || mailField.touched)"
+        class="text-danger"
+      >
         <small *ngIf="mailField.hasError('pattern')"> Email no valido </small>
         <small *ngIf="passwordField.hasError('required')">
           Debe ingresar una dirección de e-mail
@@ -24,15 +39,25 @@
     <div class="form-group my-3 py-2">
       <div class="input-group">
         <div class="form-floating col">
-          <input type="password" class="form-control" [formControl]="password" id="floatingEmail"
-            placeholder="Contraseña" value="ejemplo@gmail.com" />
+          <input
+            type="password"
+            class="form-control"
+            [formControl]="password"
+            id="floatingEmail"
+            placeholder="Contraseña"
+            value="ejemplo@gmail.com"
+          />
           <label for="floatingEmail">Ingrese su contraseña</label>
         </div>
       </div>
-      <div class="p-3" *ngIf="
+      <div
+        class="p-3"
+        *ngIf="
           passwordField.invalid &&
           (passwordField.dirty || passwordField.touched)
-        " class="text-danger">
+        "
+        class="text-danger"
+      >
         <small *ngIf="passwordField.hasError('pattern')">
           La clave debe contener al menos una letra Mayuscula, una Minuscula y
           un simbolo.
@@ -45,14 +70,18 @@
         </small>
       </div>
     </div>
-  </form>
-  <div class="col text-center py-4">
-    <div *ngIf="true">
-      <!-- routerLink="../movimientos" -->
-      <button type="Button" class="btn btn-dark" [disabled]="passwordField.invalid || mailField.invalid">
-        INGRESAR
-      </button>
+    <div class="col text-center py-4">
+      <div *ngIf="true">
+        <!-- routerLink="../movimientos" -->
+        <button
+          (click)="onEnviar()"
+          type="button"
+          class="btn btn-dark"
+          [disabled]="passwordField.invalid || mailField.invalid"
+        >
+          INGRESAR
+        </button>
+      </div>
     </div>
-
-  </div>
+  </form>
 </div>
