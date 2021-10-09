@@ -335,3 +335,11 @@ E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.JsonWeb
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.Logging.xml
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\Microsoft.IdentityModel.Tokens.xml
 E:\Capacitacion 2 PIL\PILMONEY\PilWallet\API\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\pabloaojeda\Desktop\PilMoney1C\API\bin\System.IdentityModel.Tokens.Jwt.xml
