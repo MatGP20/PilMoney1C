@@ -15,10 +15,10 @@ namespace API.Controllers
     {
 
     // GET: api/Cuenta/5
-    public Cliente Get(double id)
+    public Cliente Get(int cuit)
     {
       GestorCliente cliente = new GestorCliente();
-      return cliente.BuscarCliente(id);
+      return cliente.BuscarCliente(cuit);
 
     }
     public HttpResponseMessage Post(Cliente c)

@@ -74,7 +74,7 @@ namespace API.Models
 
     }
 
-    public Cliente BuscarCliente(double cuit_Cuil)
+    public Cliente BuscarCliente(int cuit_Cuil)
     {
       Cliente clienteBuscado = new Cliente();
 
@@ -89,7 +89,8 @@ namespace API.Models
 
       if(dr.Read())
       {
-        double Cuil_Cuit = dr.GetDouble(0);
+
+        int Cuil_Cuit = Convert.ToInt32(dr.GetInt64(0));
         string Nombre = dr.GetString(1).Trim();
         string Apellido = dr.GetString(2).Trim();
         string Password = dr.GetString(3).Trim();
