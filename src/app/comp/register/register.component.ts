@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
+
 import { Router } from '@angular/router';
 import { Provincia } from 'src/app/models/provincia.model';
-// import { Provincia } from 'src/app/interfaces/provincia.interface';
-import { Register } from 'src/app/interfaces/register.interface';
 import { ProvinciaService } from 'src/app/servicios/provincia.service';
 import { RegisterService } from 'src/app/servicios/register.service';
 import { Localidad } from 'src/app/models/localidades.model';
+import { LocalidadService } from 'src/app/servicios/localidad.service';
+import { Cliente } from 'src/app/models/register.model';
 
 
 @Component({
@@ -16,75 +16,75 @@ import { Localidad } from 'src/app/models/localidades.model';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  [x: string]: any;
-  
+      
+  public clientes: Cliente[] = [];
+  registroCliente: Cliente = new Cliente();
+  clienteDefault: Cliente = new Cliente();
+
   public provincias: Provincia[] = [];
   public localidades: Localidad[] = [];
-  
+
+  selectorProvselected : Provincia = {ID_Provincia: 0, Provincia1 :""}
 
   public previsualizacion: string = '';
   public archivos: any = [];
-  FormRegister : FormGroup;
-    
 
-  // emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
-  // mail = new FormControl('', [
-  //   Validators.required,
-  //   Validators.pattern(this.emailPattern),
-  // ]);
+  emailPatternReg = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  passwordPatternReg ='(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}';
 
-  // passwordPattern =
-  //   '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,15}';
-  // password = new FormControl('', [
-  //   Validators.required,
-  //   Validators.pattern(this.passwordPattern),
-  //   Validators.minLength(8),
-  // ]);
+
+    formRegister: FormGroup = this.formBuilder.group({});
+
+    foto_frontal = new FormControl('', [Validators.required]);
+    dni_delante = new FormControl('', [Validators.required]);
+    dni_detras = new FormControl('', [Validators.required]);
+    emailRegistro = new FormControl('', [Validators.pattern(this.emailPatternReg),Validators.required]);
+    passwordRegistro= new FormControl('', [Validators.pattern(this.passwordPatternReg),Validators.minLength(8),Validators.required]);
+    passwordRegistro2= new FormControl('', [Validators.required]);
+    provincia= new FormControl('', [Validators.required]);
+    localidad=new FormControl('', [Validators.required]);
+    nombre= new FormControl('', [Validators.required]);
+    apellido= new FormControl('', [Validators.required]);
+    cuil_cuit= new FormControl('', [Validators.required]);
+    domicilio= new FormControl('', [Validators.required]);
+
 
   constructor(
     private registerService: RegisterService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private sanitizer: DomSanitizer,
-    private provinciaService: ProvinciaService
+    private provinciaService: ProvinciaService,
+    private localidadService: LocalidadService,
+    
   ) {
-    this.FormRegister = this.formBuilder.group({
-      foto_frontal: new FormControl('', [Validators.required]),
-      dni_delante: new FormControl('', [Validators.required]),
-      dni_detras: new FormControl('', [Validators.required]),
-      mail: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      nombre: new FormControl('', [Validators.required]),
-      apellido: new FormControl('', [Validators.required]),
-      cuil_cuit: new FormControl('', [Validators.required]),
-      domicilio: new FormControl('', [Validators.required]),
-  });
+    
+  
   }
   
   ngOnInit(): void {
-
-    
-
-
+    //recibe las provincias al iniciar la página 
     this.provinciaService.getProvincia().subscribe((res : Provincia[]) => {
         this.provincias = res;
         console.log(this.provincias);         
-    });
+    });     
    
   }
 
+  //Obtiene las localidades de cada provincia.
   ObtenerLocalidadPorPr(){   
-    this.localidadService.getLocalidadPorId(this.FormRegister.value.provincia).subscribe((res: Localidad[]) => {
-      this.Localidades = res;
+    console.log(this.provincia.value);
+    this.localidadService.getLocalidadPorId(this.provincia.value).subscribe((res: Localidad[]) => {
+      console.log(res); 
+      this.localidades = res;
+      console.log(this.localidades); 
              }); 
   }
   
-  
+  //transforma imagenes en Base645 string
   extraerBase64 = async ($event: any) =>
     new Promise((resolve, _reject) => {
-      try {
-        const unsafeImg = window.URL.createObjectURL($event);
-        const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      try { // const unsafeImg = window.URL.createObjectURL($event);
+            // const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
         const reader = new FileReader();
         reader.readAsDataURL($event);
         reader.onload = () => {
@@ -97,13 +97,16 @@ export class RegisterComponent implements OnInit {
             base: null,
           });
         };
-      } catch (e) {}
+      } catch (e) {
+
+      }
     });
 
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
     this.extraerBase64(archivoCapturado).then((imagen: any) => {
       this.previsualizacion = imagen.base;
+      console.log(imagen.base);
     });
     this.archivos.push(archivoCapturado);
   }
@@ -113,20 +116,51 @@ export class RegisterComponent implements OnInit {
     this.archivos = [];
   }
 
-  // get mailField() {
-  //   return this.mail;
-  // }
+  transFFrontal(event: any) {
+    this.registroCliente.Foto_Frontal = this.capturarFile(event);
+  }
 
-  // get passwordField() {
-  //   return this.password;
-  // }
-  onEnviar(event: Register) {
-    this.registerService.postRegister(event).subscribe((data) => {
+  transDDelante(event: any) {
+    this.registroCliente.DNI_delante = this.capturarFile(event);
+  }
+
+  transDDetras(event: any) {
+    this.registroCliente.DNI_detras = this.capturarFile(event);
+  }
+
+
+
+  get emailRegistroField() {
+    return this.emailRegistro;
+  }
+
+  get passwordRegistroField() {
+    return this.passwordRegistro;
+  }
+
+  get passwordRegistroField2() {
+    return this.passwordRegistro2;
+  }
+
+  onEnviar() {
+    // console.log(this.registroCliente);
+    
+    // this.registroCliente.Password = this.passwordRegistro.value;
+    // this.registroCliente.Mail = this.emailRegistro.value;
+    this.registroCliente.Foto_Frontal = this.archivos[0];
+    this.registroCliente.DNI_delante = this.archivos[1];
+    this.registroCliente.DNI_detras =  this.archivos[2];            
+    
+    console.log(this.registroCliente);   
+
+    this.registerService.postRegister(this.registroCliente).subscribe(data => {
       {
         this.router.navigate(['/Registro']);
         console.log(data);
       }
     });
   }
+
+ 
   
 }

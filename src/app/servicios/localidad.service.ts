@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Localidad } from '../models/localidades.model';
 
-  // = 'https://localhost:44345/api/localidad/';
+  // const urlLocalidad: string = 'https://localhost:44345/api/localidad/';
+  const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +20,6 @@ export class LocalidadService {
    }
 
   getLocalidadPorId(ID_Provincia : number): Observable<Localidad[]> {
-    return this.http.get<Localidad[]>(this.urlLocalidad+ID_Provincia)
+    return this.http.get<Localidad[]>(this.urlLocalidad+ID_Provincia,httpOptions)
   }
 }

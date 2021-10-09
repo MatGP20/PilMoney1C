@@ -24,7 +24,7 @@ namespace API.Models
 
         public int ID_Localidad { get=>iD_Localidad; }
         public string Localidad1 { get=>localidad1; }
-        public string Codigo_Postal { get=>codigo_Postal; }
+        public string Codigo_Postal { get => codigo_Postal; }
         public int ID_Provincia { get=>iD_Provincia; }
     
         
