@@ -11,6 +11,8 @@ const TOKEN_KEY = 'auth-token';
   providedIn: 'root',
 })
 export class AuthService {
+  tokenOtro: any = localStorage.getItem('currentUser');
+  loged: boolean = false;
   loggedIn = new BehaviorSubject<boolean>(false);
   url = 'https://localhost:44345/api/login/authenticate';
   currentUserSubject: BehaviorSubject<LoginRequest>;
@@ -31,11 +33,10 @@ export class AuthService {
 
       .pipe(
         map((data) => {
-         
-
           localStorage.setItem('currentUser', JSON.stringify(data));
 
           this.currentUserSubject.next(data);
+          this.loged = true;
 
           this.loggedIn.next(true);
 
