@@ -176,12 +176,8 @@ export class RegisterComponent implements OnInit {
         }
         else if (data===0){
           this.toastr.success('Usuario registrado con exito','exito',{positionClass:"toast-top-center"})
-          this.router.navigate(['/login']);
-        }
-        
-        // this.router.navigate(['login']);
-
-      
+          this.router.navigate(['/Login']);
+        }   
     });
   }
 }
