@@ -11,6 +11,7 @@ import { CompModule } from './comp/comp.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../app/servicios/Auth/interceptor';
 import { ErrorInterceptor } from '../app/servicios/Auth/error.interceptor';
@@ -31,6 +32,7 @@ import { AuthService } from './servicios/Auth/auth.service';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     AuthService,

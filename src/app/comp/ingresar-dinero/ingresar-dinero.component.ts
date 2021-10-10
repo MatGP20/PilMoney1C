@@ -11,5 +11,8 @@ export class IngresarDineroComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
+}
+export class NgbdDropdownBasic {
 }

@@ -9,12 +9,12 @@ namespace API.Models
         {            
         }
 
-        public Cliente (int cuit_Cuil)
+        public Cliente (Int64 cuit_Cuil)
         {
       this.Cuit_Cuil = cuit_Cuil;
         }
 
-        public Cliente(int cuit_Cuil, string nombre, string apellido, string password, string mail, int iD_Localidad, string foto_Frontal, string dNI_delante, string dNI_detras, string domicilio)
+        public Cliente(Int64 cuit_Cuil, string nombre, string apellido, string password, string mail, int iD_Localidad, string foto_Frontal, string dNI_delante, string dNI_detras, string domicilio)
         {
           this.Cuit_Cuil = cuit_Cuil;
           this.Nombre = nombre;
@@ -28,7 +28,7 @@ namespace API.Models
           this.Domicilio = domicilio;
         }
 
-        public int Cuit_Cuil { get; set; }
+        public Int64 Cuit_Cuil { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Password { get; set; }
