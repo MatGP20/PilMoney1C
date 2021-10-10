@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Provincia } from 'src/app/models/provincia.model';
 import { ProvinciaService } from 'src/app/servicios/provincia.service';
@@ -55,6 +56,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private provinciaService: ProvinciaService,
     private localidadService: LocalidadService,
+    private toastr: ToastrService,
     
   ) {
     
@@ -130,6 +132,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
+  //parte de la validacion de los campos
 
   get emailRegistroField() {
     return this.emailRegistro;
@@ -151,13 +154,11 @@ export class RegisterComponent implements OnInit {
     this.registroCliente.DNI_delante = this.dni_delante.value;
   
     this.registroCliente.DNI_detras =  this.dni_detras.value; 
-    // this.registroCliente.Password = this.passwordRegistro.value;
-    // this.registroCliente.Mail = this.emailRegistro.value;
+    
     // this.registroCliente.Foto_Frontal = this.archivos[0];
     // this.registroCliente.DNI_delante = this.archivos[1];
     // this.registroCliente.DNI_detras =  this.archivos[2];
-               
-    
+                   
     // console.log(this.registroCliente);   
 
     this.registerService.postRegister(cliente).subscribe(data => {
@@ -166,8 +167,10 @@ export class RegisterComponent implements OnInit {
           alert("Usuario ya registrado")
         }
         else if (data===0){
-          alert("Usuario registrado con exito")
+          this.toastr.success('Usuario registrado con exito','exito',{positionClass:"toast-top-center"})
+          this.router.navigate(['/login']);
         }
+        
         // this.router.navigate(['login']);
 
       
