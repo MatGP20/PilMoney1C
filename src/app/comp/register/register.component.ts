@@ -166,16 +166,13 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.postRegister(cliente).subscribe((data) => {
       // console.log(data);
-      if (data === 1) {
-        alert('Usuario ya registrado');
-      } else if (data === 0) {
-        this.toastr.success('Usuario registrado con exito', 'exito', {
-          positionClass: 'toast-top-center',
-        });
-        this.router.navigate(['/Login']);
-      }
-
-      // this.router.navigate(['login']);
+        if(data===1){
+          alert("Usuario ya registrado")
+        }
+        else if (data===0){
+          this.toastr.success('Usuario registrado con exito','exito',{positionClass:"toast-top-center"})
+          this.router.navigate(['/Login']);
+        }   
     });
   }
 }
