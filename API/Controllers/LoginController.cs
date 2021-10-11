@@ -43,9 +43,9 @@ namespace API.Controllers
       bool isCredentialValid = loginGestor.ValidarLogin(login);
       if (isCredentialValid)
       {
-        var token = TokenGenerator.GenerateTokenJwt(login.Mail);
+        //var token = TokenGenerator.GenerateTokenJwt(login.Mail);
 
-        return Ok(token);
+        return Ok();
       }
       else
       {

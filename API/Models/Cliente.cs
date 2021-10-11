@@ -11,7 +11,12 @@ namespace API.Models
 
         public Cliente (Int64 cuit_Cuil)
         {
-      this.Cuit_Cuil = cuit_Cuil;
+          this.Cuit_Cuil = cuit_Cuil;
+        }
+
+        public Cliente(int iD_Cliente)
+        {
+          this.ID_Cliente = iD_Cliente;
         }
 
         public Cliente(Int64 cuit_Cuil, string nombre, string apellido, string password, string mail, int iD_Localidad, string foto_Frontal, string dNI_delante, string dNI_detras, string domicilio)
@@ -38,6 +43,7 @@ namespace API.Models
         public string DNI_delante { get; set; }
         public string DNI_detras { get; set; }
         public string Domicilio { get; set; }
+        public int ID_Cliente { get; }
     
         //public virtual Localidad Localidad { get; }
         

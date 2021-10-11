@@ -17,21 +17,63 @@ namespace API.Models
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "INSERT INTO Cuenta(iD_Cuenta, cBU, cuit_Cuil, iD_Tipo_Cuenta, iD_Balance) VALUES (@ID_Cuenta, @CBU, @Cuit_Cuil, @ID_Tipo_Cuenta, @ID_Balance)";
-      cm.Parameters.Add(new SqlParameter("@ID_Cuenta", nueva.ID_Cuenta));
+      cm.CommandText = "INSERT INTO Cuenta(cBU, iD_Cliente, iD_Tipo_Cuenta ) VALUES (@CBU, @ID_Cliente, @ID_Tipo_Cuenta)";
       cm.Parameters.Add(new SqlParameter("@CBU", nueva.CBU));
-      cm.Parameters.Add(new SqlParameter("@Cuit_Cuil", nueva.Cuit_Cuil));
+      cm.Parameters.Add(new SqlParameter("@ID_Cliente", nueva.ID_Cliente));
       cm.Parameters.Add(new SqlParameter("@ID_Tipo_Cuenta", nueva.ID_Tipo_Cuenta));
-      cm.Parameters.Add(new SqlParameter("@ID_Balance", nueva.ID_Balance));
-
-
-
+      
       cm.ExecuteNonQuery();
 
       cx.Close();
     }
 
-    public List<Cuenta> ListarCuenta(int Cuil_Cuit)
+    public void ModificarIDBalanceYCBU(int iD_Cuenta, string cBU)
+    {
+
+      SqlConnection cx = new SqlConnection(conection);
+
+      cx.Open();
+
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "UPDATE Cuenta SET cBU=@CBU WHERE iD_Cuenta = @ID_Cuenta";
+      cm.Parameters.Add(new SqlParameter("@ID_Cuenta", iD_Cuenta));
+     
+      cm.Parameters.Add(new SqlParameter("@CBU", cBU));
+      
+      cm.ExecuteNonQuery();
+
+      cx.Close();
+
+    }
+
+
+    public int obtenerCuentaID(int iD_Cliente, int iD_Tipo_Cuenta)
+    {
+      int iDBuscado = 0;
+      SqlConnection cx = new SqlConnection(conection);
+      cx.Open();
+
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "SELECT ID_Cuenta FROM Cuenta WHERE ID_Cliente = @iD_Cliente AND ID_Tipo_Cuenta = @iD_Tipo_Cuenta";
+      cm.Parameters.Add(new SqlParameter("@iD_Cliente", iD_Cliente));
+      cm.Parameters.Add(new SqlParameter("@iD_Tipo_Cuenta", iD_Tipo_Cuenta));
+
+      SqlDataReader dr = cm.ExecuteReader();
+      if (dr.Read())
+      {
+        int iD_Cuenta = dr.GetInt32(0);
+
+        iDBuscado = iD_Cuenta;
+      }
+      dr.Close();
+      cx.Close();
+
+
+      return iDBuscado;
+    }
+
+
+    public List<Cuenta> ListarCuenta(int iD_Cliente)
     {
       var listaCuenta = new List<Cuenta>();
 
@@ -39,21 +81,17 @@ namespace API.Models
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "SELECT * FROM Cuenta WHERE Cuit_Cuil = @cuit_Cuil";
-      cm.Parameters.Add(new SqlParameter("@cuit_Cuil", Cuil_Cuit));
+      cm.CommandText = "SELECT * FROM Cuenta WHERE ID_Cliente = @iD_Cliente";
+      cm.Parameters.Add(new SqlParameter("@iD_Cliente", iD_Cliente));
 
       SqlDataReader dr = cm.ExecuteReader();
       while (dr.Read())
       {
-        int ID_Cuenta = dr.GetInt32(0);
-        string CBU = dr.GetString(1);
-        string Cuit_Cuil = dr.GetString(2);
-        int ID_Tipo_Cuenta = dr.GetInt32(3);
-        int ID_Balance = dr.GetInt32(4);
-        
 
+        string cBU = dr.GetString(1).Trim();        
+        int iD_Tipo_Cuenta = dr.GetInt32(3);
 
-        Cuenta c = new Cuenta(ID_Cuenta, CBU, Cuit_Cuil, ID_Tipo_Cuenta, ID_Balance);
+        Cuenta c = new Cuenta(cBU, iD_Cliente, iD_Tipo_Cuenta);
         listaCuenta.Add(c);
       }
 
