@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
-  [RoutePrefix("api/movimiento")]
+  [RoutePrefix("api/Movimientos")]
   [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
   public class MovimientosController : ApiController
     {

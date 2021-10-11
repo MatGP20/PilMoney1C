@@ -65,30 +65,27 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private provinciaService: ProvinciaService,
     private localidadService: LocalidadService,
-    private toastr: ToastrService,
-    
-  ) {
-    
-  
-  }
-  
+    private toastr: ToastrService
+  ) {}
+
   ngOnInit(): void {
-    //recibe las provincias al iniciar la página 
-    this.provinciaService.getProvincia().subscribe((res : Provincia[]) => {
-        this.provincias = res;
-        // console.log(this.provincias);         
-    });     
-   
+    //recibe las provincias al iniciar la página
+    this.provinciaService.getProvincia().subscribe((res: Provincia[]) => {
+      this.provincias = res;
+      // console.log(this.provincias);
+    });
   }
 
   //Obtiene las localidades de cada provincia.
   ObtenerLocalidadPorPr() {
     console.log(this.provincia.value);
-    this.localidadService.getLocalidadPorId(this.provincia.value).subscribe((res: Localidad[]) => {
-      // console.log(res); 
-      this.localidades = res;
-      // console.log(this.localidades); 
-             }); 
+    this.localidadService
+      .getLocalidadPorId(this.provincia.value)
+      .subscribe((res: Localidad[]) => {
+        // console.log(res);
+        this.localidades = res;
+        // console.log(this.localidades);
+      });
   }
 
   //transforma imagenes en Base645 string
@@ -139,7 +136,6 @@ export class RegisterComponent implements OnInit {
     this.registroCliente.DNI_detras = this.capturarFile(event);
   }
 
-
   //parte de la validacion de los campos
 
   get emailRegistroField() {
@@ -153,35 +149,33 @@ export class RegisterComponent implements OnInit {
   get passwordRegistroField2() {
     return this.passwordRegistro2;
   }
-  
 
-  onEnviar(cliente : Cliente) {
+  onEnviar(cliente: Cliente) {
     // console.log(this.registroCliente);
     this.registroCliente.Foto_Frontal = this.foto_frontal.value;
-  
+
     this.registroCliente.DNI_delante = this.dni_delante.value;
-  
-    this.registroCliente.DNI_detras =  this.dni_detras.value; 
-    
+
+    this.registroCliente.DNI_detras = this.dni_detras.value;
+
     // this.registroCliente.Foto_Frontal = this.archivos[0];
     // this.registroCliente.DNI_delante = this.archivos[1];
     // this.registroCliente.DNI_detras =  this.archivos[2];
-                   
-    // console.log(this.registroCliente);   
 
-    this.registerService.postRegister(cliente).subscribe(data => {
+    // console.log(this.registroCliente);
+
+    this.registerService.postRegister(cliente).subscribe((data) => {
       // console.log(data);
-        if(data===1){
-          alert("Usuario ya registrado")
-        }
-        else if (data===0){
-          this.toastr.success('Usuario registrado con exito','exito',{positionClass:"toast-top-center"})
-          this.router.navigate(['/login']);
-        }
-        
-        // this.router.navigate(['login']);
+      if (data === 1) {
+        alert('Usuario ya registrado');
+      } else if (data === 0) {
+        this.toastr.success('Usuario registrado con exito', 'exito', {
+          positionClass: 'toast-top-center',
+        });
+        this.router.navigate(['/Login']);
+      }
 
-      
+      // this.router.navigate(['login']);
     });
   }
 }

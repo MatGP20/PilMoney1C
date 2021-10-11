@@ -18,7 +18,7 @@ namespace API.Models
             
         }
 
-        public Movimiento(string ID_tipo_Movimiento, string Descripcion, DateTime Fecha_Hora, decimal Monto, int ID_cuenta_final, int ID_Cuenta)
+        public Movimiento(string ID_tipo_Movimiento, string Descripcion, DateTime Fecha_Hora, decimal Monto, int ID_cuenta_final, int ID_cuenta_origen)
         {
           
           this.iD_tipo_movimiento = ID_tipo_Movimiento;
@@ -26,7 +26,7 @@ namespace API.Models
           this.fecha_Hora = Fecha_Hora;
           this.monto = Monto;
           this.iD_cuenta_final = ID_cuenta_final;
-          this.iD_Cuenta = ID_Cuenta;
+          this.iD_Cuenta = ID_cuenta_origen;
         }
 
         public Movimiento(int ID_movimiento, string ID_tipo_Movimiento, string Descripcion, DateTime Fecha_Hora, decimal Monto, int ID_cuenta_origen, int ID_cuenta_final, int ID_Cuenta)
@@ -41,6 +41,16 @@ namespace API.Models
           this.iD_Cuenta = ID_Cuenta;
         }
 
+    //    public Movimiento( string ID_tipo_Movimiento, string Descripcion, DateTime Fecha_Hora, decimal Monto, int ID_cuenta_origen, int ID_cuenta_final)
+    //{
+     
+    //  this.iD_tipo_movimiento = ID_tipo_Movimiento;
+    //  this.descripcion = Descripcion;
+    //  this.fecha_Hora = Fecha_Hora;
+    //  this.monto = Monto;
+    //  this.iD_cuenta_origen = ID_cuenta_origen;
+    //  this.iD_cuenta_final = ID_cuenta_final;
+    //}
         public int ID_movimiento { get=>iD_movimiento; set => iD_movimiento=value; }
         public string ID_tipo_Movimiento { get=>iD_tipo_movimiento; set=>iD_tipo_movimiento=value; }
         public string Descripcion { get=>descripcion; set=>descripcion=value; }
