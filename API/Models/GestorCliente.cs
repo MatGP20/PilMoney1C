@@ -14,8 +14,9 @@ namespace API.Models
     public int RegistrarCliente(Cliente nuevo)
     {
       Cliente clienteBuscado = new Cliente();
-
+      Int64 cuitBuscado = nuevo.Cuit_Cuil;
       int mensaje;
+      string cbu;
 
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
@@ -58,20 +59,44 @@ namespace API.Models
         cm.ExecuteNonQuery();
 
         cx.Close();
+        
+        Cuenta nuevaCuenta = new Cuenta();
+
+        nuevaCuenta.ID_Tipo_Cuenta = 0;
+        nuevaCuenta.ID_Cliente = obtenerIDCliente(cuitBuscado);
+        nuevaCuenta.CBU = "0000000000";
+
+        GestorCuenta creaCuentaPesos = new GestorCuenta();
+        creaCuentaPesos.CrearCuenta(nuevaCuenta);
+
+        GestorCuenta buscarID = new GestorCuenta();
+        int iDCuenta = buscarID.obtenerCuentaID(nuevaCuenta.ID_Cliente,nuevaCuenta.ID_Tipo_Cuenta);
+
+        Balance nuevoBalance = new Balance();
+
+        nuevoBalance.ID_Cuenta = iDCuenta;
+        nuevoBalance.ID_Tipo_Cuenta = nuevaCuenta.ID_Tipo_Cuenta;
+        nuevoBalance.Balance1 = 20000;
+
+        GestorBalance gBalance = new GestorBalance();
+        gBalance.CrearBalance(nuevoBalance);
+
+        cbu = "800" + nuevo.Cuit_Cuil.ToString() + "0"+nuevaCuenta.ID_Tipo_Cuenta.ToString()+"0000"+iDCuenta.ToString();
+
+        GestorCuenta actualizar = new GestorCuenta();
+        actualizar.ModificarIDBalanceYCBU(iDCuenta,cbu);
 
         mensaje = 0;
-
-        return mensaje;
 
       }
       else
       {
 
         mensaje = 1;
-
-        return mensaje;
+        
       }
-
+      
+      return mensaje;
     }
 
     public Cliente BuscarCliente(Int64 cuit_Cuil)
@@ -129,6 +154,34 @@ namespace API.Models
       cm.ExecuteNonQuery();
 
       cx.Close();
+    }
+
+    public int obtenerIDCliente(Int64 cuit_Cuil)
+    {
+      int clienteID;
+
+      SqlConnection cx = new SqlConnection(conection);
+      cx.Open();
+
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "SELECT ID_Cliente FROM Cliente WHERE cuit_Cuil = @Cuit_Cuil";
+      cm.Parameters.Add(new SqlParameter("@Cuit_Cuil", cuit_Cuil));
+
+      SqlDataReader dr = cm.ExecuteReader();
+
+      if (dr.Read())
+      {
+        int ID_Cliente = dr.GetInt32(0);
+
+        clienteID = ID_Cliente;
+      }
+      else
+      {
+        clienteID = 0;
+      }
+      dr.Close();
+      cx.Close();
+      return clienteID;
     }
 
     public List<Localidad> ObtenerLocalidadPorPr(int iD_Provincia)

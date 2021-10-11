@@ -9,21 +9,25 @@ namespace API.Models
         {
         }
 
-        public Cuenta(int iD_Cuenta, string cBU, string cuit_Cuil, int iD_Tipo_Cuenta, int iD_Balance )
+        public Cuenta(int iD_Cuenta)
         {
           this.ID_Cuenta = iD_Cuenta;
+        }
+
+        public Cuenta(string cBU, int iD_Cliente, int iD_Tipo_Cuenta )
+        {          
           this.CBU = cBU;
-          this.Cuit_Cuil = cuit_Cuil;
+          this.ID_Cliente = iD_Cliente;
           this.ID_Tipo_Cuenta = iD_Tipo_Cuenta;
-          this.ID_Balance = iD_Balance;
+          
           
         }
 
-        public int ID_Cuenta { get; set;}
+        public int ID_Cuenta { get; }
         public string CBU { get; set; }
-        public string Cuit_Cuil { get; }
-        public int ID_Tipo_Cuenta { get; }
-        public int ID_Balance { get; set; }
+        public int ID_Cliente { get; set; }
+        public int ID_Tipo_Cuenta { get; set; }
+        
         
     
         //public virtual Cliente Cliente { get; }

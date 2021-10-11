@@ -9,17 +9,22 @@ namespace API.Models
     {
     }
 
-    public Balance(int iD_Balance, int iD_Tipo_Cuenta, int balance)
+    public Balance(int iD_Balance)
     {
       this.ID_Balance = iD_Balance;
+    }
+
+    public Balance(int iD_Cuenta, int iD_Tipo_Cuenta, int balance)
+    {
+      this.ID_Cuenta = iD_Cuenta;
       this.ID_Tipo_Cuenta = iD_Tipo_Cuenta;
       this.Balance1 = balance;
 
     }
 
-    public int ID_Balance { get; set; }
+    public int ID_Balance { get; }
     public int ID_Tipo_Cuenta { get; set; }
     public int Balance1 { get; set; }
-
+    public int ID_Cuenta { get; set; }
   }
 }

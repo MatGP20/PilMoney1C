@@ -38,5 +38,7 @@ namespace API.Models
 
       return listaTipoCuenta;
     }
+
+
   }
 }
