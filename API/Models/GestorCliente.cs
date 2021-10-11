@@ -81,7 +81,7 @@ namespace API.Models
         GestorBalance gBalance = new GestorBalance();
         gBalance.CrearBalance(nuevoBalance);
 
-        cbu = "800" + nuevo.Cuit_Cuil.ToString() + "0"+nuevaCuenta.ID_Tipo_Cuenta.ToString()+"0000"+iDCuenta.ToString();
+        cbu = "800"+nuevo.Cuit_Cuil.ToString()+"0"+nuevaCuenta.ID_Tipo_Cuenta.ToString()+"0000"+iDCuenta.ToString();
 
         GestorCuenta actualizar = new GestorCuenta();
         actualizar.ModificarIDBalanceYCBU(iDCuenta,cbu);

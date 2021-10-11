@@ -28,28 +28,28 @@ namespace API.Models
       cx.Close();
     }
 
-    public int obtenerBalanceID(int iD_Cuenta, int iD_Tipo_Cuenta)
+    public decimal obtenerBalancePorID(int iD_Cuenta)
     {
-      int iDBuscado = 0;
+      decimal balanceBuscado = 0;
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
 
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "SELECT ID_Balance FROM Balance WHERE ID_Cuenta = @iD_Cuenta AND ID_Tipo_Cuenta = @iD_Tipo_Cuenta";
+      cm.CommandText = "SELECT Balance1 FROM Balance WHERE ID_Cuenta = @iD_Cuenta";
       cm.Parameters.Add(new SqlParameter("@iD_Cliente", iD_Cuenta));
-      cm.Parameters.Add(new SqlParameter("@iD_Tipo_Cuenta", iD_Tipo_Cuenta));
+      
 
       SqlDataReader dr = cm.ExecuteReader();
       if (dr.Read())
       {
-        int iD_Balance = dr.GetInt32(0);
+        decimal balance = dr.GetDecimal(0);
 
-        iDBuscado = iD_Balance;
+        balanceBuscado = balance;
       }
       dr.Close();
       cx.Close();
 
-      return iDBuscado;
+      return balanceBuscado;
     }
 
 
@@ -69,10 +69,10 @@ namespace API.Models
       while (dr.Read())
       {
         int ID_Tipo_Cuenta = dr.GetInt32(1);
-        int Balance = dr.GetInt32(2);
+        decimal Balance = dr.GetDecimal(2);
+        int ID_Cuenta = iD_Cuenta;
 
-
-        Balance cBalance = new Balance(ID_Tipo_Cuenta, Balance, iD_Cuenta);
+        Balance cBalance = new Balance(ID_Cuenta, ID_Tipo_Cuenta, Balance);
         listaBalancesPorCuenta.Add(cBalance);
       }
 
