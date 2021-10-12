@@ -13,13 +13,15 @@ namespace API.Models
 
     public int Transferencia(Movimiento transferencia)
     {
+      GestorBalance getBalance = new GestorBalance();
+      decimal balance = getBalance.obtenerBalancePorID(transferencia.ID_cuenta_origen);
 
-      decimal balance = 0;
       decimal monto = transferencia.Monto;
-      decimal nuevobalance = balance - monto;
+
+      decimal nuevoBalance = balance - monto;
       int transferenciaExito;
 
-      if (nuevobalance >= 0)
+      if (nuevoBalance >= 0)
       {
         SqlConnection cx = new SqlConnection(conection);
         cx.Open();
@@ -34,6 +36,18 @@ namespace API.Models
         cm.Parameters.Add(new SqlParameter("@ID_cuenta_origen", transferencia.ID_cuenta_origen));
         cm.ExecuteNonQuery();
         cx.Close();
+
+        GestorBalance actualizarBalance = new GestorBalance();
+        actualizarBalance.ModificarBalance(transferencia.ID_cuenta_origen, nuevoBalance);
+        GestorCuenta obtenerIDxCbu = new GestorCuenta();
+        int idcuentafinal = obtenerIDxCbu.obtenerIDporCBU(transferencia.ID_cuenta_final);
+        GestorBalance getBalanceCFinal = new GestorBalance();
+        decimal balanceCF = getBalanceCFinal.obtenerBalancePorID(idcuentafinal);
+        decimal nuevobalanceCF = balanceCF + transferencia.Monto;
+
+        actualizarBalance.ModificarBalance(idcuentafinal, nuevobalanceCF);
+
+
         transferenciaExito = 1;
       }
 
@@ -41,7 +55,6 @@ namespace API.Models
       {
         transferenciaExito = 0;
       }
-
 
       return transferenciaExito;
     }
@@ -61,12 +74,12 @@ namespace API.Models
       while (dr.Read())
       {
         int ID_movimiento = dr.GetInt32(0);
-        string ID_tipo_Movimiento = dr.GetString(1).Trim();
+        int ID_tipo_Movimiento = dr.GetInt32(1);
         string Descripcion = dr.GetString(2).Trim();
         DateTime Fecha_Hora = dr.GetDateTime(3);
         decimal Monto = dr.GetInt32(4);
         int ID_cuenta_origen = dr.GetInt32(5);
-        int ID_cuenta_final = dr.GetInt32(6);
+        string ID_cuenta_final = dr.GetString(6).Trim();
         
 
         Movimiento mov = new Movimiento(ID_movimiento, ID_tipo_Movimiento, Descripcion, Fecha_Hora,Monto, ID_cuenta_origen, ID_cuenta_final, ID_Cuenta);
@@ -78,6 +91,7 @@ namespace API.Models
 
       return listaMovimiento;
     }
+
 
     public List<Movimiento> ObtenerMovimientoPorCuenta(int ID_Cuenta)
     {
@@ -95,12 +109,12 @@ namespace API.Models
       while (dr.Read())
       {
         int ID_movimiento = dr.GetInt32(0);
-        string ID_tipo_Movimiento = dr.GetString(1).Trim();
+        int ID_tipo_Movimiento = dr.GetInt32(1);
         string Descripcion = dr.GetString(2).Trim();
         DateTime Fecha_Hora = dr.GetDateTime(3);
         decimal Monto = dr.GetInt32(4);
         int ID_cuenta_origen = dr.GetInt32(5);
-        int ID_cuenta_final = dr.GetInt32(6);
+        string ID_cuenta_final = dr.GetString(6).Trim();
 
 
         Movimiento mov = new Movimiento(ID_movimiento, ID_tipo_Movimiento, Descripcion, Fecha_Hora, Monto, ID_cuenta_origen, ID_cuenta_final, ID_Cuenta);

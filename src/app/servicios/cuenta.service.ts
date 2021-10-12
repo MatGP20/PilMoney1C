@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { Cuenta } from '../models/cuenta.model';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CuentaService {
   urlIDCuenta: string;

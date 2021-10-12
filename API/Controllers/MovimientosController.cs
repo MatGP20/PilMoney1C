@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
-  [RoutePrefix("api/movimiento")]
+  [RoutePrefix("api/Movimientos")]
   [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
   public class MovimientosController : ApiController
     {
@@ -20,7 +20,11 @@ namespace API.Controllers
       return listMov;
     }
 
-
+    public int Post(Movimiento transferencia)
+    {
+      GestorMovimiento Mtransfer = new GestorMovimiento();
+      return Mtransfer.Transferencia(transferencia);
+    }
     //public void Post(Cliente c)
     //{
     //  GestorCliente cliente = new GestorCliente();

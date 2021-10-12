@@ -81,6 +81,18 @@ namespace API.Models
 
       return listaBalancesPorCuenta;
     }
+    public void ModificarBalance(int iD_Cuenta, decimal balance)
+    {
+      SqlConnection cx = new SqlConnection(conection);
+      cx.Open();
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "UPDATE Balance SET balance=@Balance WHERE iD_Cuenta = @ID_Cuenta";
+      cm.Parameters.Add(new SqlParameter("@ID_Cuenta", iD_Cuenta));
+      cm.Parameters.Add(new SqlParameter("@Balance", balance));
+      cm.ExecuteNonQuery();
+
+      cx.Close();
+    }
 
   }
 }
