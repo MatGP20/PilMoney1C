@@ -87,11 +87,11 @@ namespace API.Models
       SqlDataReader dr = cm.ExecuteReader();
       while (dr.Read())
       {
-
+        int iD_Cuenta = dr.GetInt32(0);
         string cBU = dr.GetString(1).Trim();        
         int iD_Tipo_Cuenta = dr.GetInt32(3);
 
-        Cuenta c = new Cuenta(cBU, iD_Cliente, iD_Tipo_Cuenta);
+        Cuenta c = new Cuenta(iD_Cuenta, cBU, iD_Cliente, iD_Tipo_Cuenta);
         listaCuenta.Add(c);
       }
 

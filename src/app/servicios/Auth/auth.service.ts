@@ -34,7 +34,7 @@ export class AuthService {
       .pipe(
         map((data) => {
           localStorage.setItem('currentUser', JSON.stringify(data));
-
+          // localStorage.setItem('currentUser', data);
           this.currentUserSubject.next(data);
           this.loged = true;
 

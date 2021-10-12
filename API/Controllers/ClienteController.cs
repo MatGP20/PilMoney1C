@@ -19,8 +19,14 @@ namespace API.Controllers
     {
       GestorCliente cliente = new GestorCliente();
       return cliente.BuscarCliente(cuit);
-
     }
+
+    public static int GetID(string mail)
+    {
+      GestorCliente buscarID = new GestorCliente();
+      return buscarID.obtenerIDClienteM(mail);
+    }
+
     public int Post(Cliente c)
     {
       GestorCliente cliente = new GestorCliente();

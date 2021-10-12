@@ -184,6 +184,35 @@ namespace API.Models
       return clienteID;
     }
 
+    public int obtenerIDClienteM(string mail)
+    {
+      int clienteID;
+
+      SqlConnection cx = new SqlConnection(conection);
+      cx.Open();
+
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "SELECT ID_Cliente FROM Cliente WHERE mail = @Mail";
+      cm.Parameters.Add(new SqlParameter("@Mail", mail));
+
+      SqlDataReader dr = cm.ExecuteReader();
+
+      if (dr.Read())
+      {
+        int ID_Cliente = dr.GetInt32(0);
+
+        clienteID = ID_Cliente;
+      }
+      else
+      {
+        clienteID = 0;
+      }
+      dr.Close();
+      cx.Close();
+
+      return clienteID;
+    }
+
     public List<Localidad> ObtenerLocalidadPorPr(int iD_Provincia)
     {
       var listaLocalidades = new List<Localidad>();

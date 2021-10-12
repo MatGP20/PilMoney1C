@@ -2,6 +2,7 @@ import { Localidad } from './localidades.model';
 
 export class Cliente {
 
+    ID_Cliente! : number;
     Cuit_Cuil! : number;
     Nombre! : string;
     Apellido! : string;

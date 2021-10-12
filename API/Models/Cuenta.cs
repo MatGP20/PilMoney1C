@@ -19,9 +19,16 @@ namespace API.Models
           this.CBU = cBU;
           this.ID_Cliente = iD_Cliente;
           this.ID_Tipo_Cuenta = iD_Tipo_Cuenta;
-          
-          
         }
+
+        public Cuenta(int iD_Cuenta,string cBU, int iD_Cliente, int iD_Tipo_Cuenta)
+        {
+          this.ID_Cuenta = iD_Cuenta;
+          this.CBU = cBU;
+          this.ID_Cliente = iD_Cliente;
+          this.ID_Tipo_Cuenta = iD_Tipo_Cuenta;
+        }
+
 
         public int ID_Cuenta { get; }
         public string CBU { get; set; }

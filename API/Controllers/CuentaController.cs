@@ -14,11 +14,19 @@ namespace API.Controllers
   public class CuentaController : ApiController
     {
 
-      public List<Cuenta> Get(int id)
+      public List<Cuenta> Get(int iD_Cliente)
       {
         GestorCuenta cuenta = new GestorCuenta();
-        List<Cuenta> listaCuenta = cuenta.ListarCuenta(id);
-        return listaCuenta;
+        //List<Cuenta> listaCuenta = cuenta.ListarCuenta(iD_Cliente);
+        //return listaCuenta;
+        return cuenta.ListarCuenta(iD_Cliente);
+        
+      }
+
+      public int GetID(int iD_Cliente, int iD_Tipo_Cuenta)
+      {
+        GestorCuenta cuenta = new GestorCuenta();
+        return cuenta.obtenerCuentaID(iD_Cliente, iD_Tipo_Cuenta);
       }
 
       public void Post(Cuenta cu)
