@@ -18,12 +18,12 @@ namespace API.Models
             
         }
 
-        public Movimiento(int ID_tipo_Movimiento, string Descripcion, DateTime Fecha_Hora, decimal Monto, string ID_cuenta_final, int ID_cuenta_origen)
+        public Movimiento(int ID_tipo_Movimiento, string Descripcion, decimal Monto, string ID_cuenta_final, int ID_cuenta_origen)
         {
           
           this.iD_tipo_movimiento = ID_tipo_Movimiento;
           this.descripcion = Descripcion;
-          this.fecha_Hora = Fecha_Hora;
+          //this.fecha_Hora = Fecha_Hora;, DateTime Fecha_Hora
           this.monto = Monto;
           this.iD_cuenta_final = ID_cuenta_final;
           this.iD_Cuenta = ID_cuenta_origen;

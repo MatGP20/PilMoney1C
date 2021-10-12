@@ -36,7 +36,7 @@ namespace API.Models
 
       SqlCommand cm = cx.CreateCommand();
       cm.CommandText = "SELECT Balance1 FROM Balance WHERE ID_Cuenta = @iD_Cuenta";
-      cm.Parameters.Add(new SqlParameter("@iD_Cliente", iD_Cuenta));
+      cm.Parameters.Add(new SqlParameter("@iD_Cuenta", iD_Cuenta));
       
 
       SqlDataReader dr = cm.ExecuteReader();
@@ -86,9 +86,9 @@ namespace API.Models
       SqlConnection cx = new SqlConnection(conection);
       cx.Open();
       SqlCommand cm = cx.CreateCommand();
-      cm.CommandText = "UPDATE Balance SET balance=@Balance WHERE iD_Cuenta = @ID_Cuenta";
+      cm.CommandText = "UPDATE Balance SET balance1=@Balance1 WHERE iD_Cuenta = @ID_Cuenta";
       cm.Parameters.Add(new SqlParameter("@ID_Cuenta", iD_Cuenta));
-      cm.Parameters.Add(new SqlParameter("@Balance", balance));
+      cm.Parameters.Add(new SqlParameter("@Balance1", balance));
       cm.ExecuteNonQuery();
 
       cx.Close();

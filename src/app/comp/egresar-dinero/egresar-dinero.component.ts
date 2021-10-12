@@ -6,6 +6,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { Movimiento } from 'src/app/models/movimiento.model';
+import { MovimientosService } from 'src/app/servicios/movimientos.service';
 import { CuentaService } from '../../servicios/cuenta.service';
 @Component({
   selector: 'app-egresar-dinero',
@@ -22,19 +23,20 @@ export class EgresarDineroComponent implements OnInit {
   idcuenta: number = 0;
   fechayhora: Date = new Date();
 
-  constructor(private cuentaService: CuentaService) {}
+  constructor(private cuentaService: CuentaService, private movimientosService: MovimientosService) {}
 
   ngOnInit(): void {
     let idcliente = localStorage.getItem('currentUser');
     let user = {
-      Id: 0,
+      ID_Cliente : 0
     };
     if (idcliente) {
       user = JSON.parse(idcliente);
+      console.log(user);
     }
-    this.cuentaService.getCuentaPorClyTi(user.Id, 0).subscribe((res: any) => {
+    this.cuentaService.getCuentaPorClyTi(user.ID_Cliente, 0).subscribe((res: any) => {
       this.idcuenta = res;
-      console.log(res);
+      console.log(this.idcuenta);
     });
   }
 
@@ -44,7 +46,11 @@ export class EgresarDineroComponent implements OnInit {
     this.transferencia.ID_Cuenta_Final = this.cvu.value;
     this.transferencia.Descripcion = this.concepto.value;
     this.transferencia.ID_Cuenta = this.idcuenta;
-    this.transferencia.Fecha = this.fechayhora;
+    // this.transferencia.Fecha = this.fechayhora;
     console.log(this.transferencia);
+
+    this.movimientosService.postTransferencia(this.transferencia).subscribe((res: any)=>{
+      console.log(res);
+    });
   }
 }

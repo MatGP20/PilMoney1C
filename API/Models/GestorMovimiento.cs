@@ -14,7 +14,7 @@ namespace API.Models
     public int Transferencia(Movimiento transferencia)
     {
       GestorBalance getBalance = new GestorBalance();
-      decimal balance = getBalance.obtenerBalancePorID(transferencia.ID_cuenta_origen);
+      decimal balance = getBalance.obtenerBalancePorID(transferencia.ID_Cuenta);
 
       decimal monto = transferencia.Monto;
 
@@ -27,18 +27,18 @@ namespace API.Models
         cx.Open();
 
         SqlCommand cm = cx.CreateCommand();
-        cm.CommandText = "INSERT TO Movimientos (iD_tipo_Movimiento, descripcion, fecha_Hora,monto, iD_cuenta_final, iD_cuenta_origen) VALUES (@ID_tipo_Movimiento, @Descripcion, @Fecha_Hora, @Monto, @ID_cuenta_final, @ID_cuenta_origen)";
-        cm.Parameters.Add(new SqlParameter("@ID_Cuenta", transferencia.ID_Cuenta));
-        cm.Parameters.Add(new SqlParameter("@Descripcion", transferencia.Descripcion));
-        cm.Parameters.Add(new SqlParameter("@Fecha_Hora", transferencia.Fecha_Hora));
+        cm.CommandText = "INSERT INTO Movimientos (iD_tipo_Movimiento, descripción, monto, iD_cuenta_final, iD_Cuenta) VALUES (@ID_tipo_Movimiento, @Descripción, @Monto, @ID_cuenta_final, @ID_Cuenta)";
+        cm.Parameters.Add(new SqlParameter("@ID_tipo_Movimiento", transferencia.ID_tipo_Movimiento));
+        cm.Parameters.Add(new SqlParameter("@Descripción", transferencia.Descripcion));
+        //cm.Parameters.Add(new SqlParameter("@Fecha_Hora", transferencia.Fecha_Hora));, fecha_Hora, @Fecha_Hora
         cm.Parameters.Add(new SqlParameter("@Monto", transferencia.Monto));
         cm.Parameters.Add(new SqlParameter("@ID_cuenta_final", transferencia.ID_cuenta_final));
-        cm.Parameters.Add(new SqlParameter("@ID_cuenta_origen", transferencia.ID_cuenta_origen));
+        cm.Parameters.Add(new SqlParameter("@ID_Cuenta", transferencia.ID_Cuenta));
         cm.ExecuteNonQuery();
         cx.Close();
 
         GestorBalance actualizarBalance = new GestorBalance();
-        actualizarBalance.ModificarBalance(transferencia.ID_cuenta_origen, nuevoBalance);
+        actualizarBalance.ModificarBalance(transferencia.ID_Cuenta, nuevoBalance);
         GestorCuenta obtenerIDxCbu = new GestorCuenta();
         int idcuentafinal = obtenerIDxCbu.obtenerIDporCBU(transferencia.ID_cuenta_final);
         GestorBalance getBalanceCFinal = new GestorBalance();
