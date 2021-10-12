@@ -72,6 +72,30 @@ namespace API.Models
       return iDBuscado;
     }
 
+    public int obtenerIDporCBU(string cBU)
+    {
+      int iDBuscado = 0;
+      SqlConnection cx = new SqlConnection(conection);
+      cx.Open();
+
+      SqlCommand cm = cx.CreateCommand();
+      cm.CommandText = "SELECT ID_Cuenta FROM Cuenta WHERE cBU = @CBU";
+      cm.Parameters.Add(new SqlParameter("@CBU", cBU));
+     
+
+      SqlDataReader dr = cm.ExecuteReader();
+      if (dr.Read())
+      {
+        int iD_Cuenta = dr.GetInt32(0);
+
+        iDBuscado = iD_Cuenta;
+      }
+      dr.Close();
+      cx.Close();
+
+
+      return iDBuscado;
+    }
 
     public List<Cuenta> ListarCuenta(int iD_Cliente)
     {

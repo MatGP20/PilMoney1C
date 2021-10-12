@@ -14,8 +14,16 @@ const routes: Routes = [
   { path: 'Registro', component: RegisterComponent },
   { path: 'movimientos', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'movimientos/ingreso', component: IngresarDineroComponent },
-  { path: 'movimientos/egreso', component: EgresarDineroComponent },
+  {
+    path: 'movimientos/ingreso',
+    component: IngresarDineroComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'movimientos/egreso',
+    component: EgresarDineroComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

@@ -20,7 +20,11 @@ namespace API.Controllers
       return listMov;
     }
 
-
+    public int Post(Movimiento transferencia)
+    {
+      GestorMovimiento Mtransfer = new GestorMovimiento();
+      return Mtransfer.Transferencia(transferencia);
+    }
     //public void Post(Cliente c)
     //{
     //  GestorCliente cliente = new GestorCliente();
