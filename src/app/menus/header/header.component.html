@@ -1,237 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid align-middle ">
+<nav class="colornav navbar navbar-expand-lg navbar-dark">
+  <div class="colornav container-fluid align-middle">
     <div class="col-6 col-md-9">
-      
-        <img src="/assets/img/logo2.png" alt="Logo pequeño" class="img-thumbnail me-3 logoPequeño"/>
-        <a class="navbar-brand" routerLink="home">WAIILO</a>
-      
+      <img
+        src="../../../assets/img/logo white.png"
+        alt="Logo pequeño"
+        class="me-3 logoPequeño"
+      />
+      <a class="navbar-brand" routerLink="home">WAIILO</a>
     </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse col-6 col-md-3" id="navbarSupportedContent">
+    <div
+      class="collapse navbar-collapse col-6 col-md-3"
+      id="navbarSupportedContent"
+    >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item my-1 px-1">
-        <button type="button" class="btn btn-dark" routerLink="Registro">
-        <!-- data-bs-toggle="modal" data-bs-target="#ventanaModal" -->
-          Registrarse
-        </button>
-
-        <!-- <div
-          class="modal fade"
-          id="ventanaModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="etiquetaReg"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 id="etiquetaReg">Registrarse</h5>
-                <button
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Cerrar"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="row g-3 mb-2">
-                    <div class="col">
-                      <label for="" class="form-label">Nombre</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        aria-label="First name"
-                      />
-                    </div>
-                    <div class="col">
-                      <label for="" class="form-label">Apellido</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        aria-label="Last name"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="mb-2">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >Email</label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                    />
-                  </div>
-
-                  <div class="mb-2">
-                    <label for="inputPassword6" class="col-form-label">
-                      Contraseña
-                    </label>
-                    <div class="row">
-                      <div class="col-auto">
-                        <input
-                          type="password"
-                          id="inputPassword6"
-                          class="form-control"
-                          aria-describedby="passwordHelpInline"
-                        />
-                      </div>
-                      <div class="col-auto">
-                        <span id="passwordHelpInline" class="form-text">
-                          Must be 8-20 characters long.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="mb-2">
-                    <label for="inputPassword6" class="col-form-label">
-                      Repita la contraseña
-                    </label>
-                    <div class="row">
-                      <div class="col-auto">
-                        <input
-                          type="password"
-                          id="inputPassword6"
-                          class="form-control"
-                          aria-describedby="passwordHelpInline"
-                        />
-                      </div>
-                      <div class="col-auto">
-                        <span id="passwordHelpInline" class="form-text">
-                          Must be 8-20 characters long.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="mb-2">
-                    <label for="" class="form-label">DNI</label>
-                    <input type="number" class="form-control" id="InputDni" />
-                  </div>
-
-                  <div class="form-check mb-2">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="invalidCheck"
-                      required
-                    />
-                    <label class="form-check-label" for="invalidCheck">
-                      Acepto los terminos y condiciones.
-                    </label>
-                    <div class="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
-                  </div>
-
-                  <button type="submit" class="btn btn-primary mt-2">
-                    Registrarme
-                  </button>
-                </form>
-              </div>
-              
-            </div>
-          </div>
-        </div> -->
-      </li>
-      <li class="nav-item my-1 px-1">
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ventanaLogin" routerLink="Login">
-          Iniciar Sesion
-        </button>
-        <!-- <div class="modal fade" id="ventanaLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <app-login></app-login> -->
-              <!-- <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div> -->
-            <!-- </div>
-          </div>
-        </div> -->
-        <!-- <div
-            class="modal fade" id="ventanaLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ventanaLoginLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <app-login></app-login>
-              </div>
-            </div>
-          </div> -->
-        <!-- <div
-          class="modal fade"
-          id="ventanaLogin"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="etiquetaReg"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 id="etiquetaReg">Iniciar Sesion</h5>
-                <button
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Cerrar"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >Email</label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label"
-                      >Contraseña</label
-                    >
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="exampleInputPassword1"
-                    />
-                  </div>
-                  <div class="mb-3 form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label class="form-check-label" for="exampleCheck1"
-                      >Recuerda mi cuenta</label
-                    >
-                  </div>
-                  <button type="submit" class="btn btn-primary">Aceptar</button>
-                </form>
-
-               
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </li>
-    </ul>
+        <li class="nav-item my-1 px-1">
+          <button type="button" class="btn" routerLink="Registro">
+            <!-- data-bs-toggle="modal" data-bs-target="#ventanaModal" -->
+            Registrarse
+          </button>
+        </li>
+        <li class="nav-item my-1 px-1">
+          <button
+            type="button"
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#ventanaLogin"
+            routerLink="Login"
+          >
+            Iniciar Sesion
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
