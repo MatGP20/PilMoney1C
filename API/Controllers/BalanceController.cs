@@ -14,5 +14,17 @@ namespace API.Controllers
   public class BalanceController : ApiController
     {
 
-    }
+      public decimal Get(int iD_Cuenta)
+      {
+        GestorBalance obtenerBalance = new GestorBalance();
+        return obtenerBalance.obtenerBalancePorID(iD_Cuenta);
+      }
+
+    //public int GetID(int iD_Cliente, int iD_Tipo_Cuenta)
+    //{
+    //  GestorCuenta cuenta = new GestorCuenta();
+    //  return cuenta.obtenerCuentaID(iD_Cliente, iD_Tipo_Cuenta);
+    //}
+
+  }
 }

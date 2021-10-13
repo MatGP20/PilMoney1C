@@ -22,6 +22,7 @@ export class EgresarDineroComponent implements OnInit {
   concepto = new FormControl('', [Validators.required]);
   idcuenta: number = 0;
   fechayhora: Date = new Date();
+  balance: number = 0;
 
   constructor(private cuentaService: CuentaService, private movimientosService: MovimientosService) {}
 
@@ -37,8 +38,21 @@ export class EgresarDineroComponent implements OnInit {
     this.cuentaService.getCuentaPorClyTi(user.ID_Cliente, 0).subscribe((res: any) => {
       this.idcuenta = res;
       console.log(this.idcuenta);
+      this.cuentaService.getBalancePorCuenta(this.idcuenta).subscribe((res: any) => {
+        this.balance = res;
+        console.log(this.balance);
+      })
     });
+
+    console.log(this.idcuenta);
+
+    // this.cuentaService.getBalancePorCuenta(this.idcuenta).subscribe((res: any) => {
+    //   this.balance = res;
+    //   console.log(this.balance);
+    // })
   }
+
+  
 
   onEnviar() {
     this.transferencia.ID_Tipo_Movimiento = 1;
