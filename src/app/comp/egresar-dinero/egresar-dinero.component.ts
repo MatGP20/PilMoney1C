@@ -14,9 +14,11 @@ import { CuentaService } from '../../servicios/cuenta.service';
   styleUrls: ['./egresar-dinero.component.css'],
 })
 export class EgresarDineroComponent implements OnInit {
+  montoPattern = "^[0-9]+";
+
   transferencia: Movimiento = new Movimiento();
   // formTransferencia: FormGroup = this.formBuilder.group({})
-  monto = new FormControl('', [Validators.required]);
+  monto = new FormControl('', [Validators.required, Validators.pattern(this.montoPattern)]);
   cvu = new FormControl('', [Validators.required]);
   // mail = new FormControl('', [Validators.required]);
   concepto = new FormControl('', [Validators.required]);
@@ -33,26 +35,27 @@ export class EgresarDineroComponent implements OnInit {
     };
     if (idcliente) {
       user = JSON.parse(idcliente);
-      console.log(user);
+      // console.log(user);
     }
     this.cuentaService.getCuentaPorClyTi(user.ID_Cliente, 0).subscribe((res: any) => {
       this.idcuenta = res;
-      console.log(this.idcuenta);
+      // console.log(this.idcuenta);
       this.cuentaService.getBalancePorCuenta(this.idcuenta).subscribe((res: any) => {
         this.balance = res;
-        console.log(this.balance);
+        // console.log(this.balance);
       })
     });
 
-    console.log(this.idcuenta);
-
+    // console.log(this.idcuenta);
     // this.cuentaService.getBalancePorCuenta(this.idcuenta).subscribe((res: any) => {
     //   this.balance = res;
     //   console.log(this.balance);
     // })
   }
 
-  
+  get montofield(){
+    return this.monto;
+  }; 
 
   onEnviar() {
     this.transferencia.ID_Tipo_Movimiento = 1;
@@ -61,10 +64,12 @@ export class EgresarDineroComponent implements OnInit {
     this.transferencia.Descripcion = this.concepto.value;
     this.transferencia.ID_Cuenta = this.idcuenta;
     // this.transferencia.Fecha = this.fechayhora;
-    console.log(this.transferencia);
+    // console.log(this.transferencia);
 
     this.movimientosService.postTransferencia(this.transferencia).subscribe((res: any)=>{
       console.log(res);
     });
+
+    
   }
 }

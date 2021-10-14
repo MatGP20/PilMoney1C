@@ -15,17 +15,12 @@
       <form class="card p-2">
         <div class="input-group">
           <span class="input-group-text">$</span>
-          <input
-            type="number"
-            [formControl]="monto"
-            name="monto"
-            min="0.00"
-            max="100000000.00"
-            step="0.01"
-            class="form-control"
-            placeholder="$0,00"
-            required
-          />
+          <input type="number" [formControl]="monto" name="monto" min="0.00" max="100000000.00" step="0.01"
+            class="form-control" placeholder="$0,00" required />          
+        </div>
+        <div *ngIf="montofield.invalid && (montofield.dirty || montofield.touched)" class="text-danger">
+          <small *ngIf="montofield.hasError('pattern')"> Deben ser valores mayores a 1 </small>
+          <small *ngIf="montofield.hasError('required')"> Debe ingresar monto </small>
         </div>
       </form>
       <hr class="mb-4" />
@@ -34,30 +29,15 @@
         <div class="row">
           <div class="col mb-3">
             <label for="firstName">Para:</label>
-            <input
-              type="text"
-              [formControl]="cvu"
-              name="cvu"
-              class="form-control"
-              id="firstName"
-              placeholder="CBU/ALIAS"
-              value=""
-              required
-            />
+            <input type="text" [formControl]="cvu" name="cvu" class="form-control" id="firstName"
+              placeholder="CBU/ALIAS" value="" required />
             <div class="invalid-feedback">Valid first name is required.</div>
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="email"
-            >Email <span class="text-muted">(Opcional)</span></label
-          >
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="ejemplo@gmail.com"
-          />
+          <label for="email">Email <span class="text-muted">(Opcional)</span></label>
+          <input type="email" class="form-control" id="email" placeholder="ejemplo@gmail.com" />
           <div class="invalid-feedback">
             El correo que ingreso no es valido.
           </div>
@@ -66,13 +46,8 @@
         <div class="row">
           <div class="col-md-5 mb-3">
             <label for="country">Concepto</label>
-            <select
-              class="custom-select d-block w-100 mt-2"
-              [formControl]="concepto"
-              name="concepto"
-              id="country"
-              required
-            >
+            <select class="custom-select d-block w-100 mt-2" [formControl]="concepto" name="concepto" id="country"
+              required>
               <option value="">Elija una opcion...</option>
               <option>Alquileres</option>
               <option>Cuota</option>
@@ -86,22 +61,12 @@
         </div>
 
         <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="same-address"
-          />
+          <input type="checkbox" class="custom-control-input" id="same-address" />
           <label class="custom-control-label ms-2" for="same-address">
-            ¿ Desea agendar la cuenta ?</label
-          >
+            ¿ Desea agendar la cuenta ?</label>
         </div>
 
-        <button
-          (click)="onEnviar()"
-          class="btn btn-dark btn-lg btn-block my-3"
-          type="submit"
-          routerLink="../"
-        >
+        <button (click)="onEnviar()" class="btn btn-dark btn-lg btn-block my-3" type="submit" [disabled]="montofield.invalid" routerLink="../">
           Confirmar
         </button>
       </form>
